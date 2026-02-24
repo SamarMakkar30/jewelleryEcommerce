@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { categories, Product } from "@/data/mock";
 import { useStoreData } from "@/context/AdminContext";
 import ProductCard from "@/components/ui/ProductCard";
 import QuickViewModal from "@/components/layout/QuickViewModal";
+import { ProductGridSkeleton } from "@/components/ui/Skeletons";
 import {
   SlidersHorizontal,
   ChevronDown,
@@ -23,16 +25,35 @@ const sortOptions = [
 
 export default function ShopPage() {
   const { products } = useStoreData();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const searchQuery = searchParams.get("search") || "";
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState("newest");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 5000]);
   const [showFilters, setShowFilters] = useState(false);
   const [gridCols, setGridCols] = useState(4);
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+  const [mounted, setMounted] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const filteredProducts = useMemo(() => {
     let filtered = [...products];
+
+    // Search filter
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q) ||
+          p.categorySlug.toLowerCase().includes(q)
+      );
+    }
 
     // Category filter
     if (selectedCategory !== "all") {
@@ -63,7 +84,7 @@ export default function ShopPage() {
     }
 
     return filtered;
-  }, [selectedCategory, sortBy, priceRange]);
+  }, [products, selectedCategory, sortBy, priceRange, searchQuery]);
 
   // Reveal animation
   useEffect(() => {
@@ -94,10 +115,23 @@ export default function ShopPage() {
         {/* Page Header */}
         <div className="bg-cream border-b border-blush">
           <div className="luxury-container py-8 sm:py-12 md:py-16 text-center">
-            <h1 className="font-serif text-heading-1 sm:text-display text-neutral-900">Shop</h1>
+            <h1 className="font-serif text-heading-1 sm:text-display text-neutral-900">
+              {searchQuery ? `Results for "${searchQuery}"` : "Shop"}
+            </h1>
             <p className="text-body-sm sm:text-body text-neutral-400 mt-2 sm:mt-3 max-w-md mx-auto px-2">
-              Explore our complete collection of anti-tarnish, waterproof jewellery.
+              {searchQuery
+                ? `${filteredProducts.length} product${filteredProducts.length !== 1 ? "s" : ""} found`
+                : "Explore our complete collection of anti-tarnish, waterproof jewellery."}
             </p>
+            {searchQuery && (
+              <button
+                onClick={() => router.push("/shop")}
+                className="mt-3 inline-flex items-center gap-1.5 text-body-sm text-gold hover:text-neutral-900 transition-colors"
+              >
+                <X size={14} />
+                Clear search
+              </button>
+            )}
           </div>
         </div>
 
@@ -287,26 +321,30 @@ export default function ShopPage() {
               gridCols === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"
             }`}
           >
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="shop-item opacity-0 translate-y-4"
-                style={{
-                  transitionProperty: "opacity, transform",
-                  transitionDuration: "0.6s",
-                  transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-                }}
-              >
-                <ProductCard
-                  product={product}
-                  onQuickView={setQuickViewProduct}
-                />
-              </div>
-            ))}
+            {!mounted ? (
+              <ProductGridSkeleton count={8} />
+            ) : (
+              filteredProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className="shop-item opacity-0 translate-y-4"
+                  style={{
+                    transitionProperty: "opacity, transform",
+                    transitionDuration: "0.6s",
+                    transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+                  }}
+                >
+                  <ProductCard
+                    product={product}
+                    onQuickView={setQuickViewProduct}
+                  />
+                </div>
+              ))
+            )}
           </div>
 
           {/* Empty State */}
-          {filteredProducts.length === 0 && (
+          {mounted && filteredProducts.length === 0 && (
             <div className="text-center py-20">
               <p className="font-serif text-heading-3 text-neutral-300 mb-3">
                 No products found

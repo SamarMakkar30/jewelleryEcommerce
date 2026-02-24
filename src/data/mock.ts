@@ -45,16 +45,7 @@ export interface NavItem {
 // ─── Navigation ─────────────────────────────────────────────────────────────
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
-  {
-    label: "Shop",
-    href: "/shop",
-    children: [
-      { label: "All Jewellery", href: "/shop" },
-      { label: "New Arrivals", href: "/shop?sort=newest" },
-      { label: "Best Sellers", href: "/shop?sort=bestseller" },
-      { label: "Sale", href: "/shop?sort=sale" },
-    ],
-  },
+  { label: "Shop", href: "/shop" },
   {
     label: "Categories",
     href: "/categories",

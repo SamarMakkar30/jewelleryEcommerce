@@ -60,7 +60,7 @@ export default function Footer() {
               Be the first to know about new collections, exclusive offers, and
               styling tips. Get 10% off your first order.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 sm:gap-0 max-w-md mx-auto">
+            <form className="flex flex-col sm:flex-row gap-3 sm:gap-0 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
                 placeholder="Enter your email"

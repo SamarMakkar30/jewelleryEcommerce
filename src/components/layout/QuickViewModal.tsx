@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { X, Heart, Star, ShieldCheck, Droplets, Sparkles, ShoppingBag } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface QuickViewModalProps {
   product: Product | null;
@@ -19,6 +19,10 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
   const { addItem } = useCart();
   const { toggleItem, isInWishlist } = useWishlist();
   const [selectedImage, setSelectedImage] = useState(0);
+
+  useEffect(() => {
+    setSelectedImage(0);
+  }, [product]);
 
   if (!product) return null;
 

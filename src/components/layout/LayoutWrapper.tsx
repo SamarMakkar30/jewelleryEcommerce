@@ -5,7 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import CartDrawer from "./CartDrawer";
 import SmoothScroll from "./SmoothScroll";
-import WhatsAppButton from "@/components/sections/WhatsAppButton";
+import NavigationProgress from "./NavigationProgress";
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -17,11 +17,11 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 
   return (
     <SmoothScroll>
+      <NavigationProgress />
       <Header />
       <main className="min-h-screen">{children}</main>
       <Footer />
       <CartDrawer />
-      <WhatsAppButton />
     </SmoothScroll>
   );
 }

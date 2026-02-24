@@ -130,9 +130,11 @@ function LoginScreen() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 bg-gradient-to-br from-gold to-gold-dark rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-gold">
-            <Sparkles size={24} className="text-white" />
-          </div>
+          <img
+            src="/logo.jpeg"
+            alt="Lunara Jewels"
+            className="w-32 h-32 object-contain rounded-2xl mx-auto mb-4 shadow-gold"
+          />
           <h1 className="font-serif text-2xl text-white tracking-wide">LUNARA JEWELS</h1>
           <p className="text-sm text-neutral-500 mt-1">Admin Panel</p>
         </div>
@@ -178,10 +180,6 @@ function LoginScreen() {
               )}
             </button>
           </div>
-
-          <p className="text-[11px] text-neutral-600 text-center mt-6">
-            Hint: lunara2026
-          </p>
         </form>
       </div>
     </div>

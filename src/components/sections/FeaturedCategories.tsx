@@ -94,7 +94,7 @@ export default function FeaturedCategories() {
 
               {/* Product Count Badge */}
               <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white/10 backdrop-blur-sm text-ivory text-[10px] sm:text-caption px-2 py-0.5 sm:py-1 rounded-pill">
-                {products.filter((p) => p.category.toLowerCase() === cat.slug.toLowerCase()).length} pieces
+                {products.filter((p) => p.categorySlug === cat.slug).length} pieces
               </div>
             </Link>
           ))}

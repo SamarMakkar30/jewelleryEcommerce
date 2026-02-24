@@ -1,5 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const titles: Record<string, string> = {
+    shipping: "Shipping Policy",
+    returns: "Return Policy",
+    privacy: "Privacy Policy",
+    terms: "Terms of Service",
+  };
+  const title = titles[params.slug] || "Policy";
+  return {
+    title: `${title} | LUNARA JEWELS`,
+    description: `Read the ${title.toLowerCase()} for Lunara Jewels — premium anti-tarnish jewellery.`,
+  };
+}
 
 const policyContent: Record<
   string,

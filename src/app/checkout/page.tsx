@@ -52,6 +52,9 @@ export default function CheckoutPage() {
   };
 
   const handleSubmit = () => {
+    // Block empty cart
+    if (state.items.length === 0) return;
+
     // Validate all fields
     const required = ["email", "firstName", "lastName", "address", "city", "state", "pincode", "phone"];
     const newErrors: Record<string, boolean> = {};
@@ -66,7 +69,7 @@ export default function CheckoutPage() {
     if (hasError) return;
 
     // Build WhatsApp message
-    const phoneDigits = "917206889528";
+    const phoneDigits = (settings.phone || "917206889528").replace(/\D/g, "");
     const itemLines = state.items
       .map(
         (item) =>
@@ -126,8 +129,12 @@ ${itemLines}
       {/* Header */}
       <div className="border-b border-neutral-100">
         <div className="luxury-container py-5 flex items-center justify-between">
-          <Link href="/" className="font-serif text-heading-3 text-neutral-900">
-            LUNARA <span className="text-gold">✦</span>
+          <Link href="/" className="flex flex-col items-center leading-none">
+            <div className="flex items-center">
+              <span className="font-serif text-[18px] tracking-tight text-neutral-900">LUNARA JEWELS</span>
+              <span className="text-gold ml-1 text-[14px] font-serif">✦</span>
+            </div>
+            <span className="text-[8px] tracking-[0.25em] text-gold font-medium uppercase mt-0.5">By Pakhi</span>
           </Link>
           <div className="flex items-center gap-1 text-caption text-neutral-400">
             <Lock size={12} />

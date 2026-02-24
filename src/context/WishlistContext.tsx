@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 import { Product } from "@/data/mock";
 
 interface WishlistContextType {
@@ -15,6 +15,24 @@ const WishlistContext = createContext<WishlistContextType | undefined>(undefined
 
 export function WishlistProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<Product[]>([]);
+
+  // Load wishlist from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("lunara-wishlist");
+      if (saved) {
+        const parsed: Product[] = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setItems(parsed);
+        }
+      }
+    } catch {}
+  }, []);
+
+  // Save wishlist to localStorage on change
+  useEffect(() => {
+    localStorage.setItem("lunara-wishlist", JSON.stringify(items));
+  }, [items]);
 
   const addItem = useCallback((product: Product) => {
     setItems((prev) => {

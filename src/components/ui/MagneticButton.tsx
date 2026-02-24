@@ -15,7 +15,7 @@ export default function MagneticButton({
   strength = 0.3,
   onClick,
 }: MagneticButtonProps) {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -52,8 +52,8 @@ export default function MagneticButton({
   }, [strength]);
 
   return (
-    <button ref={ref} className={className} onClick={onClick}>
+    <div ref={ref} className={`inline-flex cursor-pointer ${className}`} onClick={onClick} role="button" tabIndex={0}>
       {children}
-    </button>
+    </div>
   );
 }

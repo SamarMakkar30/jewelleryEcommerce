@@ -120,7 +120,7 @@ const adminReducer = (state: AdminState, action: AdminAction): AdminState => {
 // ─── Context ────────────────────────────────────────────────────────────────
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
-const ADMIN_PASSWORD = "lunara2026";
+const ADMIN_PASSWORD = "pakhi1602";
 
 export function AdminProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(adminReducer, {

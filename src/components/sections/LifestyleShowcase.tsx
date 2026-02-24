@@ -10,7 +10,7 @@ const lifestyleImages = [
     span: "col-span-1 row-span-2",
   },
   {
-    src: "https://images.unsplash.com/photo-1515562141589-67f0d569b6e5?w=600&h=360&fit=crop",
+    src: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&h=360&fit=crop",
     alt: "Jewellery detail shot",
     span: "col-span-1 row-span-1",
   },

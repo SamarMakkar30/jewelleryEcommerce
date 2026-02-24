@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Droplets, Shield, Heart, Sparkles } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Us | LUNARA JEWELS — Our Story & Mission",
+  description: "Learn about Lunara Jewels by Pakhi — our mission to create premium anti-tarnish, waterproof jewellery that's made for everyday elegance.",
+  openGraph: {
+    title: "About LUNARA JEWELS",
+    description: "Premium anti-tarnish jewellery designed for the modern woman.",
+  },
+};
 
 export default function AboutPage() {
   return (

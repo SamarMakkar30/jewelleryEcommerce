@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   title: "LUNARA — Premium Anti-Tarnish Jewellery | Waterproof & Hypoallergenic",
   description:
     "Discover waterproof, anti-tarnish, and hypoallergenic jewellery designed for the modern woman. Necklaces, earrings, rings & bracelets that stay beautiful forever.",
+  icons: {
+    icon: "/fevicon.png",
+    apple: "/fevicon.png",
+  },
   keywords: [
     "anti-tarnish jewellery",
     "waterproof jewellery",

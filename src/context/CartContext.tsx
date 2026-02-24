@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useReducer, useCallback } from "react";
+import React, { createContext, useContext, useReducer, useCallback, useEffect } from "react";
 import { Product } from "@/data/mock";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -93,6 +93,26 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, { items: [], isOpen: false });
+
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("lunara-cart");
+      if (saved) {
+        const items: CartItem[] = JSON.parse(saved);
+        if (Array.isArray(items) && items.length > 0) {
+          items.forEach((item) => {
+            dispatch({ type: "ADD_ITEM", payload: { product: item.product, quantity: item.quantity, size: item.size } });
+          });
+        }
+      }
+    } catch {}
+  }, []);
+
+  // Save cart to localStorage on change
+  useEffect(() => {
+    localStorage.setItem("lunara-cart", JSON.stringify(state.items));
+  }, [state.items]);
 
   const addItem = useCallback(
     (product: Product, quantity?: number, size?: string) =>

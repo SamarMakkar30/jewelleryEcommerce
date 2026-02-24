@@ -502,7 +502,7 @@ export default function ProductPage() {
             </p>
           </div>
           <button
-            onClick={() => addItem(product)}
+            onClick={() => addItem(product, quantity)}
             className="btn-primary flex-1 py-3 min-h-[48px]"
           >
             <ShoppingBag size={16} className="mr-2" />

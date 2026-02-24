@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Policies | LUNARA JEWELS — Shipping, Returns & Privacy",
+  description: "Read our shipping policy, return policy, privacy policy, and terms of service for Lunara Jewels.",
+};
 
 const policies = [
   {

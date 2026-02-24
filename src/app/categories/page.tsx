@@ -45,7 +45,7 @@ export default function CategoriesPage() {
                   {cat.description}
                 </p>
                 <div className="flex items-center gap-2 text-gold text-body-sm font-medium group-hover:gap-3 transition-all">
-                  <span>Shop {products.filter((p) => p.category.toLowerCase() === cat.slug.toLowerCase()).length} Pieces</span>
+                  <span>Shop {products.filter((p) => p.categorySlug === cat.slug).length} Pieces</span>
                   <ArrowRight size={14} />
                 </div>
               </div>

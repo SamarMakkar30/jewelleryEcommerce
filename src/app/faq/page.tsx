@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import { faqData } from "@/data/mock";
 import Accordion from "@/components/ui/Accordion";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "FAQ | LUNARA JEWELS — Frequently Asked Questions",
+  description: "Find answers about our anti-tarnish jewellery, shipping, returns, care instructions, and more.",
+  openGraph: {
+    title: "FAQ — LUNARA JEWELS",
+    description: "Your questions about our premium jewellery, answered.",
+  },
+};
 
 export default function FAQPage() {
   return (

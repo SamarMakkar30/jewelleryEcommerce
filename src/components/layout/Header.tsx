@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   Search,
@@ -17,6 +18,7 @@ import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 
 export default function Header() {
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -72,12 +74,17 @@ export default function Header() {
             </button>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <span className="font-serif text-heading-3 md:text-heading-2 tracking-tight text-neutral-900">
-                LUNARA
-              </span>
-              <span className="text-gold ml-1 text-heading-4 font-serif">
-                ✦
+            <Link href="/" className="flex flex-col items-center leading-none">
+              <div className="flex items-center">
+                <span className="font-serif text-[18px] md:text-heading-3 tracking-tight text-neutral-900">
+                  LUNARA JEWELS
+                </span>
+                <span className="text-gold ml-1 text-[14px] md:text-heading-4 font-serif">
+                  ✦
+                </span>
+              </div>
+              <span className="text-[8px] md:text-[9px] tracking-[0.25em] text-gold font-medium uppercase mt-0.5">
+                By Pakhi
               </span>
             </Link>
 
@@ -193,14 +200,34 @@ export default function Header() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && searchQuery.trim()) {
+                    router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+                    setSearchOpen(false);
+                    setSearchQuery("");
+                  }
+                  if (e.key === "Escape") {
+                    setSearchOpen(false);
+                    setSearchQuery("");
+                  }
+                }}
                 placeholder="Search for necklaces, rings..."
                 className="w-full bg-transparent border-b-2 border-neutral-200 focus:border-gold pb-3 sm:pb-4 text-heading-4 sm:text-heading-3 md:text-heading-2 font-serif outline-none placeholder:text-neutral-300 transition-colors"
                 autoFocus
               />
-              <Search
-                size={22}
-                className="absolute right-0 bottom-4 sm:bottom-5 text-neutral-400"
-              />
+              <button
+                onClick={() => {
+                  if (searchQuery.trim()) {
+                    router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+                    setSearchOpen(false);
+                    setSearchQuery("");
+                  }
+                }}
+                className="absolute right-0 bottom-4 sm:bottom-5 text-neutral-400 hover:text-neutral-700 transition-colors p-1"
+                aria-label="Search"
+              >
+                <Search size={22} />
+              </button>
             </div>
             <div className="mt-8 sm:mt-12 max-w-2xl mx-auto">
               <p className="text-overline uppercase tracking-widest text-neutral-400 mb-4">
@@ -211,7 +238,11 @@ export default function Header() {
                   (tag) => (
                     <button
                       key={tag}
-                      onClick={() => setSearchQuery(tag)}
+                      onClick={() => {
+                        router.push(`/shop?search=${encodeURIComponent(tag)}`);
+                        setSearchOpen(false);
+                        setSearchQuery("");
+                      }}
                       className="px-4 py-2.5 bg-neutral-100 text-body-sm text-neutral-600 hover:bg-neutral-200 transition-colors rounded-pill min-h-[40px]"
                     >
                       {tag}
@@ -244,7 +275,7 @@ export default function Header() {
                         key={child.label}
                         href={child.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block py-3 text-body-sm text-neutral-500 min-h-[44px] flex items-center"
+                        className="py-3 text-body-sm text-neutral-500 min-h-[44px] flex items-center"
                       >
                         {child.label}
                       </Link>
