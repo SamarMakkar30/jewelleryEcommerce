@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { useStoreData } from "@/context/AdminContext";
 
 export default function ContactPage() {
+  const { settings } = useStoreData();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,21 +22,21 @@ export default function ContactPage() {
   return (
     <div className="bg-ivory min-h-screen">
       <div className="bg-cream border-b border-blush">
-        <div className="luxury-container py-12 md:py-16 text-center">
-          <span className="text-overline uppercase tracking-[0.2em] text-gold font-medium">
+        <div className="luxury-container py-8 sm:py-12 md:py-16 text-center">
+          <span className="text-[10px] sm:text-overline uppercase tracking-[0.2em] text-gold font-medium">
             Get in Touch
           </span>
-          <h1 className="font-serif text-display text-neutral-900 mt-3">
+          <h1 className="font-serif text-heading-1 sm:text-display text-neutral-900 mt-2 sm:mt-3">
             Contact Us
           </h1>
-          <p className="text-body text-neutral-400 mt-3 max-w-md mx-auto">
+          <p className="text-body-sm sm:text-body text-neutral-400 mt-2 sm:mt-3 max-w-md mx-auto">
             Have a question or need help? We&apos;re always here for you.
           </p>
         </div>
       </div>
 
-      <div className="luxury-container py-16 md:py-20">
-        <div className="grid lg:grid-cols-5 gap-12">
+      <div className="luxury-container py-10 sm:py-16 md:py-20">
+        <div className="grid lg:grid-cols-5 gap-8 sm:gap-12">
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-8">
             <div>
@@ -46,19 +48,19 @@ export default function ContactPage() {
                   {
                     icon: Mail,
                     label: "Email",
-                    value: "hello@pakhi.in",
-                    href: "mailto:hello@pakhi.in",
+                    value: settings.email,
+                    href: `mailto:${settings.email}`,
                   },
                   {
                     icon: Phone,
                     label: "Phone",
-                    value: "+91 98765 43210",
-                    href: "tel:+919876543210",
+                    value: settings.phone,
+                    href: `tel:${settings.phone.replace(/\D/g, "")}`,
                   },
                   {
                     icon: MapPin,
                     label: "Address",
-                    value: "Mumbai, Maharashtra, India",
+                    value: settings.address,
                   },
                   {
                     icon: Clock,
@@ -95,12 +97,12 @@ export default function ContactPage() {
 
           {/* Form */}
           <div className="lg:col-span-3">
-            <div className="bg-white p-8 border border-neutral-100 shadow-soft-sm">
+            <div className="bg-white p-5 sm:p-8 border border-neutral-100 shadow-soft-sm">
               <h2 className="font-serif text-heading-3 text-neutral-900 mb-6">
                 Send a Message
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid md:grid-cols-2 gap-5">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                   <input
                     type="text"
                     value={formData.name}
@@ -109,7 +111,7 @@ export default function ContactPage() {
                     }
                     placeholder="Your Name"
                     required
-                    className="w-full border border-neutral-200 px-4 py-3 text-body-sm outline-none focus:border-gold transition-colors"
+                    className="w-full border border-neutral-200 px-4 py-3 text-body-sm outline-none focus:border-gold transition-colors min-h-[48px]"
                   />
                   <input
                     type="email"
@@ -119,7 +121,7 @@ export default function ContactPage() {
                     }
                     placeholder="Your Email"
                     required
-                    className="w-full border border-neutral-200 px-4 py-3 text-body-sm outline-none focus:border-gold transition-colors"
+                    className="w-full border border-neutral-200 px-4 py-3 text-body-sm outline-none focus:border-gold transition-colors min-h-[48px]"
                   />
                 </div>
                 <input
@@ -129,7 +131,7 @@ export default function ContactPage() {
                     setFormData({ ...formData, subject: e.target.value })
                   }
                   placeholder="Subject"
-                  className="w-full border border-neutral-200 px-4 py-3 text-body-sm outline-none focus:border-gold transition-colors"
+                  className="w-full border border-neutral-200 px-4 py-3 text-body-sm outline-none focus:border-gold transition-colors min-h-[48px]"
                 />
                 <textarea
                   value={formData.message}

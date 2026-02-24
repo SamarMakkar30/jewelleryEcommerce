@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
-import { products, categories, Product } from "@/data/mock";
+import { categories, Product } from "@/data/mock";
+import { useStoreData } from "@/context/AdminContext";
 import ProductCard from "@/components/ui/ProductCard";
 import QuickViewModal from "@/components/layout/QuickViewModal";
 import {
@@ -21,6 +22,7 @@ const sortOptions = [
 ];
 
 export default function ShopPage() {
+  const { products } = useStoreData();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState("newest");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 5000]);
@@ -91,9 +93,9 @@ export default function ShopPage() {
       <div className="bg-ivory min-h-screen">
         {/* Page Header */}
         <div className="bg-cream border-b border-blush">
-          <div className="luxury-container py-12 md:py-16 text-center">
-            <h1 className="font-serif text-display text-neutral-900">Shop</h1>
-            <p className="text-body text-neutral-400 mt-3 max-w-md mx-auto">
+          <div className="luxury-container py-8 sm:py-12 md:py-16 text-center">
+            <h1 className="font-serif text-heading-1 sm:text-display text-neutral-900">Shop</h1>
+            <p className="text-body-sm sm:text-body text-neutral-400 mt-2 sm:mt-3 max-w-md mx-auto px-2">
               Explore our complete collection of anti-tarnish, waterproof jewellery.
             </p>
           </div>
@@ -101,12 +103,12 @@ export default function ShopPage() {
 
         <div className="luxury-container py-8 md:py-12">
           {/* Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-6 border-b border-neutral-100">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-neutral-100">
+            <div className="flex items-center gap-3 sm:gap-4">
               {/* Filter Toggle */}
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center gap-2 text-body-sm font-medium text-neutral-700 hover:text-neutral-900 transition-colors"
+                className="flex items-center gap-2 text-body-sm font-medium text-neutral-700 hover:text-neutral-900 transition-colors min-h-[40px] px-2"
               >
                 <SlidersHorizontal size={16} />
                 Filters
@@ -170,7 +172,7 @@ export default function ShopPage() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-transparent border border-neutral-200 px-4 py-2 pr-8 text-body-sm text-neutral-700 outline-none focus:border-gold cursor-pointer"
+                  className="appearance-none bg-transparent border border-neutral-200 px-3 py-2 pr-7 sm:px-4 sm:pr-8 text-[12px] sm:text-body-sm text-neutral-700 outline-none focus:border-gold cursor-pointer min-h-[40px]"
                 >
                   {sortOptions.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -209,7 +211,7 @@ export default function ShopPage() {
                   <div className="flex flex-wrap gap-2">
                     <button
                       onClick={() => setSelectedCategory("all")}
-                      className={`px-3 py-1.5 text-body-sm border transition-colors ${
+                      className={`px-3 py-2 text-body-sm border transition-colors min-h-[36px] ${
                         selectedCategory === "all"
                           ? "border-neutral-900 bg-neutral-900 text-ivory"
                           : "border-neutral-200 text-neutral-600"
@@ -221,7 +223,7 @@ export default function ShopPage() {
                       <button
                         key={cat.slug}
                         onClick={() => setSelectedCategory(cat.slug)}
-                        className={`px-3 py-1.5 text-body-sm border transition-colors ${
+                        className={`px-3 py-2 text-body-sm border transition-colors min-h-[36px] ${
                           selectedCategory === cat.slug
                             ? "border-neutral-900 bg-neutral-900 text-ivory"
                             : "border-neutral-200 text-neutral-600"
@@ -245,7 +247,7 @@ export default function ShopPage() {
                       onChange={(e) =>
                         setPriceRange([Number(e.target.value), priceRange[1]])
                       }
-                      className="w-24 border border-neutral-200 px-3 py-2 text-body-sm outline-none focus:border-gold"
+                      className="w-28 sm:w-24 border border-neutral-200 px-3 py-2.5 text-body-sm outline-none focus:border-gold min-h-[44px]"
                       placeholder="Min"
                     />
                     <span className="text-neutral-300">—</span>
@@ -255,7 +257,7 @@ export default function ShopPage() {
                       onChange={(e) =>
                         setPriceRange([priceRange[0], Number(e.target.value)])
                       }
-                      className="w-24 border border-neutral-200 px-3 py-2 text-body-sm outline-none focus:border-gold"
+                      className="w-28 sm:w-24 border border-neutral-200 px-3 py-2.5 text-body-sm outline-none focus:border-gold min-h-[44px]"
                       placeholder="Max"
                     />
                   </div>

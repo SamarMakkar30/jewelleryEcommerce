@@ -1,13 +1,15 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { products, Product } from "@/data/mock";
+import { Product } from "@/data/mock";
+import { useStoreData } from "@/context/AdminContext";
 import ProductCard from "@/components/ui/ProductCard";
 import QuickViewModal from "@/components/layout/QuickViewModal";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function BestSellers() {
+  const { products } = useStoreData();
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const bestSellers = products.filter((p) =>
@@ -48,15 +50,15 @@ export default function BestSellers() {
       <section className="section-padding bg-white">
         <div className="luxury-container">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-3 sm:gap-4">
             <div>
-              <span className="text-overline uppercase tracking-[0.2em] text-gold font-medium">
+              <span className="text-[10px] sm:text-overline uppercase tracking-[0.2em] text-gold font-medium">
                 Customer Favorites
               </span>
-              <h2 className="font-serif text-heading-1 md:text-display text-neutral-900 mt-3">
+              <h2 className="font-serif text-heading-2 sm:text-heading-1 md:text-display text-neutral-900 mt-2 sm:mt-3">
                 Best Sellers
               </h2>
-              <p className="text-body text-neutral-400 mt-2 max-w-md">
+              <p className="text-body-sm sm:text-body text-neutral-400 mt-1.5 sm:mt-2 max-w-md">
                 Our most loved pieces — tried, tested, and adored by thousands.
               </p>
             </div>
@@ -75,7 +77,7 @@ export default function BestSellers() {
           {/* Product Grid */}
           <div
             ref={sectionRef}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 md:gap-x-6 md:gap-y-12"
+            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-x-4 sm:gap-y-8 md:gap-x-6 md:gap-y-12"
           >
             {displayProducts.map((product) => (
               <div

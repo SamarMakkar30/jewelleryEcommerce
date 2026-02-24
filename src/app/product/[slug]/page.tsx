@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import {
   Star,
   Heart,
@@ -19,7 +19,8 @@ import {
   Share2,
   ZoomIn,
 } from "lucide-react";
-import { products, reviews as mockReviews } from "@/data/mock";
+import { reviews as mockReviews } from "@/data/mock";
+import { useStoreData } from "@/context/AdminContext";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import ProductCard from "@/components/ui/ProductCard";
@@ -29,8 +30,10 @@ import Accordion from "@/components/ui/Accordion";
 export default function ProductPage() {
   const params = useParams();
   const slug = params.slug as string;
+  const { products } = useStoreData();
   const product = products.find((p) => p.slug === slug);
 
+  const router = useRouter();
   const { addItem } = useCart();
   const { toggleItem, isInWishlist } = useWishlist();
 
@@ -139,8 +142,8 @@ export default function ProductPage() {
       </div>
 
       {/* Product Section */}
-      <div className="luxury-container pb-16 md:pb-24">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+      <div className="luxury-container pb-12 sm:pb-16 md:pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16">
           {/* Image Gallery */}
           <div className="space-y-3">
             {/* Main Image */}
@@ -229,7 +232,7 @@ export default function ProductPage() {
             </div>
 
             {/* Title */}
-            <h1 className="font-serif text-heading-1 text-neutral-900">
+            <h1 className="font-serif text-heading-2 sm:text-heading-1 text-neutral-900">
               {product.name}
             </h1>
 
@@ -255,7 +258,7 @@ export default function ProductPage() {
 
             {/* Price */}
             <div className="flex items-baseline gap-3 pb-6 border-b border-neutral-100">
-              <span className="font-serif text-heading-2 text-neutral-900">
+              <span className="font-serif text-heading-3 sm:text-heading-2 text-neutral-900">
                 ₹{product.price.toLocaleString()}
               </span>
               {product.comparePrice && (
@@ -436,8 +439,8 @@ export default function ProductPage() {
         }}
       >
         <div className="luxury-container">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-heading-2 text-neutral-900">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="font-serif text-heading-3 sm:text-heading-2 text-neutral-900">
               Customer Reviews
             </h2>
             <div className="flex items-center justify-center gap-2 mt-3">
@@ -475,7 +478,7 @@ export default function ProductPage() {
           }}
         >
           <div className="luxury-container">
-            <h2 className="font-serif text-heading-2 text-neutral-900 text-center mb-12">
+            <h2 className="font-serif text-heading-3 sm:text-heading-2 text-neutral-900 text-center mb-8 sm:mb-12">
               You May Also Like
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
@@ -488,9 +491,9 @@ export default function ProductPage() {
       )}
 
       {/* Sticky Mobile Add to Cart */}
-      <div className="fixed bottom-0 left-0 right-0 bg-ivory/95 backdrop-blur-xl border-t border-neutral-100 px-4 py-3 z-40 md:hidden">
+      <div className="fixed bottom-0 left-0 right-0 bg-ivory/95 backdrop-blur-xl border-t border-neutral-100 px-4 py-3 z-40 md:hidden safe-bottom">
         <div className="flex items-center gap-3">
-          <div>
+          <div className="min-w-0 flex-shrink">
             <p className="text-body-sm font-medium text-neutral-900 line-clamp-1">
               {product.name}
             </p>
@@ -500,7 +503,7 @@ export default function ProductPage() {
           </div>
           <button
             onClick={() => addItem(product)}
-            className="btn-primary flex-1 py-3"
+            className="btn-primary flex-1 py-3 min-h-[48px]"
           >
             <ShoppingBag size={16} className="mr-2" />
             Add to Cart

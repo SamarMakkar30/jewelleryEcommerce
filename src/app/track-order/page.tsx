@@ -22,11 +22,11 @@ export default function TrackOrderPage() {
   return (
     <div className="bg-ivory min-h-screen">
       <div className="bg-cream border-b border-blush">
-        <div className="luxury-container py-12 md:py-16 text-center">
-          <span className="text-overline uppercase tracking-[0.2em] text-gold font-medium">
+        <div className="luxury-container py-8 sm:py-12 md:py-16 text-center">
+          <span className="text-[10px] sm:text-overline uppercase tracking-[0.2em] text-gold font-medium">
             Order Tracking
           </span>
-          <h1 className="font-serif text-display text-neutral-900 mt-3">
+          <h1 className="font-serif text-heading-1 sm:text-display text-neutral-900 mt-3">
             Track Your Order
           </h1>
           <p className="text-body text-neutral-400 mt-3 max-w-md mx-auto">
@@ -35,9 +35,9 @@ export default function TrackOrderPage() {
         </div>
       </div>
 
-      <div className="luxury-container py-16 md:py-20">
+      <div className="luxury-container py-10 sm:py-16 md:py-20">
         <div className="max-w-lg mx-auto">
-          <form onSubmit={handleTrack} className="flex gap-0 mb-12">
+          <form onSubmit={handleTrack} className="flex flex-col sm:flex-row gap-3 sm:gap-0 mb-12">
             <input
               type="text"
               value={orderId}
@@ -45,7 +45,7 @@ export default function TrackOrderPage() {
                 setOrderId(e.target.value);
                 setTracked(false);
               }}
-              placeholder="Enter Order ID (e.g., PKH-20260220-001)"
+              placeholder="Enter Order ID (e.g., LNR-20260220-001)"
               className="flex-1 border border-neutral-200 px-5 py-3.5 text-body-sm outline-none focus:border-gold transition-colors bg-white"
             />
             <button type="submit" className="btn-primary gap-2">
@@ -61,7 +61,7 @@ export default function TrackOrderPage() {
                   <div>
                     <p className="text-caption text-neutral-400">Order ID</p>
                     <p className="text-body font-medium text-neutral-800">
-                      {orderId || "PKH-20260220-001"}
+                      {orderId || "LNR-20260220-001"}
                     </p>
                   </div>
                   <span className="text-body-sm font-medium text-green-600 bg-green-50 px-3 py-1">

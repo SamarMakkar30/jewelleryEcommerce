@@ -12,6 +12,7 @@ import {
   User,
 } from "lucide-react";
 import { navigation } from "@/data/mock";
+import { useStoreData } from "@/context/AdminContext";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 
@@ -24,6 +25,7 @@ export default function Header() {
 
   const { toggleCart, totalItems } = useCart();
   const { items: wishlistItems } = useWishlist();
+  const { settings } = useStoreData();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -46,8 +48,8 @@ export default function Header() {
   return (
     <>
       {/* Announcement Bar */}
-      <div className="bg-neutral-900 text-ivory text-center py-2 text-overline uppercase tracking-widest">
-        Free Shipping on Orders Above ₹999 ✦ Anti-Tarnish Guaranteed
+      <div className="bg-neutral-900 text-ivory text-center py-2 px-4 text-[10px] sm:text-overline uppercase tracking-widest safe-top">
+        {settings.announcementText}
       </div>
 
       {/* Header */}
@@ -59,11 +61,11 @@ export default function Header() {
         }`}
       >
         <div className="luxury-container">
-          <div className="flex items-center justify-between h-16 md:h-18">
+          <div className="flex items-center justify-between h-14 sm:h-16 md:h-18">
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 -ml-2"
+              className="lg:hidden p-2.5 -ml-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -72,7 +74,7 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <span className="font-serif text-heading-3 md:text-heading-2 tracking-tight text-neutral-900">
-                PAKHI
+                LUNARA
               </span>
               <span className="text-gold ml-1 text-heading-4 font-serif">
                 ✦
@@ -126,17 +128,17 @@ export default function Header() {
             </nav>
 
             {/* Right Actions */}
-            <div className="flex items-center gap-1 md:gap-3">
+            <div className="flex items-center gap-0.5 sm:gap-1 md:gap-3">
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-2 text-neutral-700 hover:text-neutral-900 transition-colors"
+                className="p-2.5 text-neutral-700 hover:text-neutral-900 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
                 aria-label="Search"
               >
                 <Search size={20} />
               </button>
               <Link
                 href="/wishlist"
-                className="p-2 text-neutral-700 hover:text-neutral-900 transition-colors relative hidden md:block"
+                className="p-2.5 text-neutral-700 hover:text-neutral-900 transition-colors relative hidden sm:flex items-center justify-center min-w-[44px] min-h-[44px]"
               >
                 <Heart size={20} />
                 {wishlistItems.length > 0 && (
@@ -147,13 +149,13 @@ export default function Header() {
               </Link>
               <Link
                 href="/account"
-                className="p-2 text-neutral-700 hover:text-neutral-900 transition-colors hidden md:block"
+                className="p-2.5 text-neutral-700 hover:text-neutral-900 transition-colors hidden md:flex items-center justify-center min-w-[44px] min-h-[44px]"
               >
                 <User size={20} />
               </Link>
               <button
                 onClick={toggleCart}
-                className="p-2 text-neutral-700 hover:text-neutral-900 transition-colors relative"
+                className="p-2.5 text-neutral-700 hover:text-neutral-900 transition-colors relative min-w-[44px] min-h-[44px] flex items-center justify-center"
                 aria-label="Cart"
               >
                 <ShoppingBag size={20} />
@@ -171,9 +173,9 @@ export default function Header() {
       {/* Search Overlay */}
       {searchOpen && (
         <div className="fixed inset-0 z-[60] bg-ivory/98 backdrop-blur-xl animate-fade-in">
-          <div className="luxury-container pt-8">
-            <div className="flex items-center justify-between mb-8">
-              <span className="font-serif text-heading-3 text-neutral-300">
+          <div className="luxury-container pt-6 sm:pt-8">
+            <div className="flex items-center justify-between mb-6 sm:mb-8">
+              <span className="font-serif text-heading-4 sm:text-heading-3 text-neutral-300">
                 Search
               </span>
               <button
@@ -181,7 +183,7 @@ export default function Header() {
                   setSearchOpen(false);
                   setSearchQuery("");
                 }}
-                className="p-2"
+                className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center"
               >
                 <X size={24} />
               </button>
@@ -191,16 +193,16 @@ export default function Header() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search for necklaces, rings, earrings..."
-                className="w-full bg-transparent border-b-2 border-neutral-200 focus:border-gold pb-4 text-heading-3 md:text-heading-2 font-serif outline-none placeholder:text-neutral-300 transition-colors"
+                placeholder="Search for necklaces, rings..."
+                className="w-full bg-transparent border-b-2 border-neutral-200 focus:border-gold pb-3 sm:pb-4 text-heading-4 sm:text-heading-3 md:text-heading-2 font-serif outline-none placeholder:text-neutral-300 transition-colors"
                 autoFocus
               />
               <Search
-                size={24}
-                className="absolute right-0 bottom-5 text-neutral-400"
+                size={22}
+                className="absolute right-0 bottom-4 sm:bottom-5 text-neutral-400"
               />
             </div>
-            <div className="mt-12 max-w-2xl mx-auto">
+            <div className="mt-8 sm:mt-12 max-w-2xl mx-auto">
               <p className="text-overline uppercase tracking-widest text-neutral-400 mb-4">
                 Trending Searches
               </p>
@@ -210,7 +212,7 @@ export default function Header() {
                     <button
                       key={tag}
                       onClick={() => setSearchQuery(tag)}
-                      className="px-4 py-2 bg-neutral-100 text-body-sm text-neutral-600 hover:bg-neutral-200 transition-colors rounded-pill"
+                      className="px-4 py-2.5 bg-neutral-100 text-body-sm text-neutral-600 hover:bg-neutral-200 transition-colors rounded-pill min-h-[40px]"
                     >
                       {tag}
                     </button>
@@ -224,14 +226,14 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[55] bg-ivory animate-slide-in-right lg:hidden">
-          <div className="p-5 pt-20 space-y-1">
+        <div className="fixed inset-0 z-[55] bg-ivory animate-slide-in-right lg:hidden overflow-y-auto">
+          <div className="p-5 pt-20 pb-24 space-y-1">
             {navigation.map((item) => (
               <div key={item.label}>
                 <Link
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block py-3 text-heading-4 font-serif text-neutral-800 border-b border-neutral-100"
+                  className="flex py-3.5 text-heading-4 font-serif text-neutral-800 border-b border-neutral-100 min-h-[48px] items-center"
                 >
                   {item.label}
                 </Link>
@@ -242,7 +244,7 @@ export default function Header() {
                         key={child.label}
                         href={child.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block py-2 text-body-sm text-neutral-500"
+                        className="block py-3 text-body-sm text-neutral-500 min-h-[44px] flex items-center"
                       >
                         {child.label}
                       </Link>
@@ -251,20 +253,25 @@ export default function Header() {
                 )}
               </div>
             ))}
-            <div className="pt-8 flex items-center gap-4">
+            <div className="pt-8 flex flex-col gap-3">
               <Link
                 href="/wishlist"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-2 text-body-sm text-neutral-600"
+                className="flex items-center gap-3 text-body text-neutral-600 py-3 min-h-[48px]"
               >
-                <Heart size={18} /> Wishlist
+                <Heart size={20} /> Wishlist
+                {wishlistItems.length > 0 && (
+                  <span className="ml-auto w-6 h-6 bg-gold text-white text-[11px] font-bold flex items-center justify-center rounded-full">
+                    {wishlistItems.length}
+                  </span>
+                )}
               </Link>
               <Link
                 href="/account"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-2 text-body-sm text-neutral-600"
+                className="flex items-center gap-3 text-body text-neutral-600 py-3 min-h-[48px]"
               >
-                <User size={18} /> Account
+                <User size={20} /> Account
               </Link>
             </div>
           </div>

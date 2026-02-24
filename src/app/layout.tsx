@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import CartDrawer from "@/components/layout/CartDrawer";
-import SmoothScroll from "@/components/layout/SmoothScroll";
-import WhatsAppButton from "@/components/sections/WhatsAppButton";
+import { AdminProvider } from "@/context/AdminContext";
+import LayoutWrapper from "@/components/layout/LayoutWrapper";
 
 export const metadata: Metadata = {
-  title: "PAKHI — Premium Anti-Tarnish Jewellery | Waterproof & Hypoallergenic",
+  title: "LUNARA — Premium Anti-Tarnish Jewellery | Waterproof & Hypoallergenic",
   description:
     "Discover waterproof, anti-tarnish, and hypoallergenic jewellery designed for the modern woman. Necklaces, earrings, rings & bracelets that stay beautiful forever.",
   keywords: [
@@ -21,7 +18,7 @@ export const metadata: Metadata = {
     "everyday jewellery India",
   ],
   openGraph: {
-    title: "PAKHI — Premium Anti-Tarnish Jewellery",
+    title: "LUNARA — Premium Anti-Tarnish Jewellery",
     description:
       "Waterproof. Anti-Tarnish. Made for Everyday Elegance.",
     type: "website",
@@ -35,18 +32,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
+        <meta name="theme-color" content="#1A1A18" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      </head>
       <body className="font-sans antialiased bg-ivory text-neutral-800">
-        <CartProvider>
-          <WishlistProvider>
-            <SmoothScroll>
-              <Header />
-              <main className="min-h-screen">{children}</main>
-              <Footer />
-              <CartDrawer />
-              <WhatsAppButton />
-            </SmoothScroll>
-          </WishlistProvider>
-        </CartProvider>
+        <AdminProvider>
+          <CartProvider>
+            <WishlistProvider>
+              <LayoutWrapper>{children}</LayoutWrapper>
+            </WishlistProvider>
+          </CartProvider>
+        </AdminProvider>
       </body>
     </html>
   );

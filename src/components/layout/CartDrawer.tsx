@@ -20,9 +20,9 @@ export default function CartDrawer() {
       />
 
       {/* Drawer */}
-      <div className="fixed top-0 right-0 h-full w-full max-w-md bg-ivory z-[75] shadow-soft-xl animate-slide-in-right flex flex-col">
+      <div className="fixed top-0 right-0 h-full w-full sm:max-w-md bg-ivory z-[75] shadow-soft-xl animate-slide-in-right flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 border-b border-neutral-100 safe-top">
           <div>
             <h2 className="font-serif text-heading-4 text-neutral-900">
               Your Cart
@@ -33,14 +33,14 @@ export default function CartDrawer() {
           </div>
           <button
             onClick={closeCart}
-            className="p-2 hover:bg-neutral-100 rounded-full transition-colors"
+            className="p-2.5 hover:bg-neutral-100 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             <X size={20} />
           </button>
         </div>
 
         {/* Items */}
-        <div className="flex-1 overflow-y-auto py-4 px-6 space-y-4 no-scrollbar">
+        <div className="flex-1 overflow-y-auto py-4 px-4 sm:px-6 space-y-4 no-scrollbar">
           {state.items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center py-12">
               <div className="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mb-4">
@@ -85,7 +85,7 @@ export default function CartDrawer() {
                     </h3>
                     <button
                       onClick={() => removeItem(item.product.id)}
-                      className="p-1 hover:bg-neutral-100 rounded-full flex-shrink-0"
+                      className="p-2.5 hover:bg-neutral-100 rounded-full flex-shrink-0 min-w-[44px] min-h-[44px] flex items-center justify-center -mr-1.5"
                     >
                       <X size={14} className="text-neutral-400" />
                     </button>
@@ -107,11 +107,11 @@ export default function CartDrawer() {
                             item.quantity - 1
                           )
                         }
-                        className="w-8 h-8 flex items-center justify-center hover:bg-neutral-100 transition-colors"
+                        className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center hover:bg-neutral-100 transition-colors"
                       >
                         <Minus size={12} />
                       </button>
-                      <span className="w-8 h-8 flex items-center justify-center text-body-sm font-medium">
+                      <span className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center text-body-sm font-medium">
                         {item.quantity}
                       </span>
                       <button
@@ -121,7 +121,7 @@ export default function CartDrawer() {
                             item.quantity + 1
                           )
                         }
-                        className="w-8 h-8 flex items-center justify-center hover:bg-neutral-100 transition-colors"
+                        className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center hover:bg-neutral-100 transition-colors"
                       >
                         <Plus size={12} />
                       </button>
@@ -143,7 +143,7 @@ export default function CartDrawer() {
 
         {/* Footer */}
         {state.items.length > 0 && (
-          <div className="border-t border-neutral-100 px-6 py-5 space-y-4">
+          <div className="border-t border-neutral-100 px-4 sm:px-6 py-4 sm:py-5 space-y-4 safe-bottom">
             {/* Trust Badges */}
             <div className="flex items-center justify-center gap-4 text-caption text-neutral-400">
               <span className="flex items-center gap-1">

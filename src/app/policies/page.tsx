@@ -27,11 +27,11 @@ export default function PoliciesIndexPage() {
   return (
     <div className="bg-ivory min-h-screen">
       <div className="bg-cream border-b border-blush">
-        <div className="luxury-container py-12 md:py-16 text-center">
-          <h1 className="font-serif text-display text-neutral-900">Policies</h1>
+        <div className="luxury-container py-8 sm:py-12 md:py-16 text-center">
+          <h1 className="font-serif text-heading-1 sm:text-display text-neutral-900">Policies</h1>
         </div>
       </div>
-      <div className="luxury-container py-16">
+      <div className="luxury-container py-10 sm:py-16">
         <div className="max-w-2xl mx-auto space-y-4">
           {policies.map((policy) => (
             <Link

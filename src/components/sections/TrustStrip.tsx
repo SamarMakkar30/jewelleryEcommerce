@@ -43,7 +43,7 @@ export default function TrustStrip() {
     <section className="bg-cream border-y border-blush">
       <div
         ref={stripRef}
-        className="luxury-container py-10 md:py-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8"
+        className="luxury-container py-8 sm:py-10 md:py-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8"
       >
         {trustFeatures.map((feature, i) => {
           const Icon = iconMap[feature.icon] || Shield;
@@ -52,13 +52,13 @@ export default function TrustStrip() {
               key={i}
               className="trust-item flex flex-col items-center text-center opacity-0 translate-y-4 transition-all duration-600 ease-luxury"
             >
-              <div className="w-12 h-12 flex items-center justify-center mb-3 text-gold">
-                <Icon size={24} strokeWidth={1.5} />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-2 sm:mb-3 text-gold">
+                <Icon size={22} strokeWidth={1.5} />
               </div>
-              <h4 className="text-body-sm font-semibold text-neutral-800 mb-1">
+              <h4 className="text-[12px] sm:text-body-sm font-semibold text-neutral-800 mb-1">
                 {feature.title}
               </h4>
-              <p className="text-caption text-neutral-400">
+              <p className="text-[11px] sm:text-caption text-neutral-400">
                 {feature.description}
               </p>
             </div>

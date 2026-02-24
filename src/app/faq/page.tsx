@@ -6,20 +6,20 @@ export default function FAQPage() {
   return (
     <div className="bg-ivory min-h-screen">
       <div className="bg-cream border-b border-blush">
-        <div className="luxury-container py-12 md:py-16 text-center">
-          <span className="text-overline uppercase tracking-[0.2em] text-gold font-medium">
+        <div className="luxury-container py-8 sm:py-12 md:py-16 text-center">
+          <span className="text-[10px] sm:text-overline uppercase tracking-[0.2em] text-gold font-medium">
             Help Center
           </span>
-          <h1 className="font-serif text-display text-neutral-900 mt-3">
+          <h1 className="font-serif text-heading-2 sm:text-heading-1 md:text-display text-neutral-900 mt-2 sm:mt-3">
             Frequently Asked Questions
           </h1>
-          <p className="text-body text-neutral-400 mt-3 max-w-md mx-auto">
-            Everything you need to know about Pakhi jewellery.
+          <p className="text-body-sm sm:text-body text-neutral-400 mt-2 sm:mt-3 max-w-md mx-auto px-2">
+            Everything you need to know about Lunara jewellery.
           </p>
         </div>
       </div>
 
-      <div className="luxury-container py-16 md:py-20">
+      <div className="luxury-container py-10 sm:py-16 md:py-20">
         <div className="max-w-2xl mx-auto">
           <Accordion items={faqData} />
         </div>

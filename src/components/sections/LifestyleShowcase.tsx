@@ -56,14 +56,14 @@ export default function LifestyleShowcase() {
     <section className="section-padding">
       <div className="luxury-container">
         {/* Header */}
-        <div className="text-center mb-14">
-          <span className="text-overline uppercase tracking-[0.2em] text-gold font-medium">
+        <div className="text-center mb-8 sm:mb-14">
+          <span className="text-[10px] sm:text-overline uppercase tracking-[0.2em] text-gold font-medium">
             Styled for Life
           </span>
-          <h2 className="font-serif text-heading-1 md:text-display text-neutral-900 mt-3">
+          <h2 className="font-serif text-heading-2 sm:text-heading-1 md:text-display text-neutral-900 mt-2 sm:mt-3">
             Wear It Your Way
           </h2>
-          <p className="text-body text-neutral-400 mt-3 max-w-md mx-auto">
+          <p className="text-body-sm sm:text-body text-neutral-400 mt-2 sm:mt-3 max-w-md mx-auto px-2">
             Real moments, real beauty. Our jewellery is designed to be part of your everyday story.
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function LifestyleShowcase() {
         {/* Masonry-style Grid */}
         <div
           ref={sectionRef}
-          className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[250px] transition-opacity duration-1000 ease-luxury opacity-0"
+          className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4 auto-rows-[160px] sm:auto-rows-[200px] md:auto-rows-[250px] transition-opacity duration-1000 ease-luxury opacity-0"
         >
           {lifestyleImages.map((img, i) => (
             <div
@@ -98,7 +98,7 @@ export default function LifestyleShowcase() {
               href="#"
               className="text-gold font-medium hover:underline underline-offset-4"
             >
-              @pakhi.jewels
+              @lunara.jewels
             </a>{" "}
             for daily styling inspiration
           </p>

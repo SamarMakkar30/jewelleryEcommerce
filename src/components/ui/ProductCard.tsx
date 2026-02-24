@@ -66,30 +66,29 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
           </span>
         )}
 
-        {/* Hover Actions */}
-        <div className="absolute bottom-0 left-0 right-0 p-3 flex gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-luxury">
+        {/* Hover Actions — visible on hover (desktop) or always on touch */}
+        <div className="absolute bottom-0 left-0 right-0 p-2.5 sm:p-3 flex gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-luxury touch-show">
           <button
             onClick={() => addItem(product)}
-            className="flex-1 bg-neutral-900 text-ivory text-body-sm font-medium py-2.5 flex items-center justify-center gap-2 hover:bg-neutral-800 transition-colors"
+            className="flex-1 bg-neutral-900 text-ivory text-[12px] sm:text-body-sm font-medium py-2.5 sm:py-2.5 flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-neutral-800 transition-colors min-h-[44px]"
           >
-            <ShoppingBag size={15} />
+            <ShoppingBag size={14} />
             Add to Cart
           </button>
           {onQuickView && (
             <button
               onClick={() => onQuickView(product)}
-              className="bg-white/90 backdrop-blur-sm text-neutral-900 p-2.5 hover:bg-white transition-colors"
+              className="bg-white/90 backdrop-blur-sm text-neutral-900 p-2.5 hover:bg-white transition-colors hidden sm:block"
             >
               <Eye size={15} />
             </button>
           )}
         </div>
 
-        {/* Wishlist Button */}
+        {/* Wishlist Button — always visible on touch devices */}
         <button
           onClick={() => toggleItem(product)}
-          className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white"
-          style={{ right: discount > 0 ? "auto" : undefined, left: discount > 0 ? "auto" : undefined }}
+          className={`absolute top-3 w-9 h-9 sm:w-8 sm:h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity duration-300 hover:bg-white ${discount > 0 ? 'right-14' : 'right-3'}`}
         >
           <Heart
             size={14}
@@ -99,20 +98,20 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
       </div>
 
       {/* Info */}
-      <div className="space-y-1.5">
+      <div className="space-y-1 sm:space-y-1.5">
         <Link href={`/product/${product.slug}`}>
-          <h3 className="font-sans text-body-sm font-medium text-neutral-800 group-hover:text-neutral-600 transition-colors line-clamp-2">
+          <h3 className="font-sans text-[12px] sm:text-body-sm font-medium text-neutral-800 group-hover:text-neutral-600 transition-colors line-clamp-2 leading-tight sm:leading-normal">
             {product.name}
           </h3>
         </Link>
 
         {/* Rating */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1 sm:gap-1.5">
           <div className="flex items-center gap-0.5">
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                size={11}
+                size={10}
                 className={
                   i < Math.floor(product.rating)
                     ? "fill-gold text-gold"
@@ -121,18 +120,18 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
               />
             ))}
           </div>
-          <span className="text-caption text-neutral-400">
+          <span className="text-[10px] sm:text-caption text-neutral-400">
             ({product.reviewCount})
           </span>
         </div>
 
         {/* Price */}
-        <div className="flex items-center gap-2">
-          <span className="font-sans text-body font-semibold text-neutral-900">
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+          <span className="font-sans text-body-sm sm:text-body font-semibold text-neutral-900">
             ₹{product.price.toLocaleString()}
           </span>
           {product.comparePrice && (
-            <span className="text-body-sm text-neutral-400 line-through">
+            <span className="text-[11px] sm:text-body-sm text-neutral-400 line-through">
               ₹{product.comparePrice.toLocaleString()}
             </span>
           )}

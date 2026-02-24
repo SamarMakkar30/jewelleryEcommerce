@@ -30,15 +30,15 @@ export default function WishlistPage() {
   return (
     <div className="bg-ivory min-h-screen">
       <div className="bg-cream border-b border-blush">
-        <div className="luxury-container py-12 md:py-16 text-center">
-          <h1 className="font-serif text-display text-neutral-900">Wishlist</h1>
-          <p className="text-body text-neutral-400 mt-3">
+        <div className="luxury-container py-8 sm:py-12 md:py-16 text-center">
+          <h1 className="font-serif text-heading-1 sm:text-display text-neutral-900">Wishlist</h1>
+          <p className="text-body-sm sm:text-body text-neutral-400 mt-2 sm:mt-3">
             {items.length} saved {items.length === 1 ? "piece" : "pieces"}
           </p>
         </div>
       </div>
-      <div className="luxury-container py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 md:gap-x-6 md:gap-y-12">
+      <div className="luxury-container py-8 sm:py-12 md:py-16">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-x-4 sm:gap-y-8 md:gap-x-6 md:gap-y-12">
           {items.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

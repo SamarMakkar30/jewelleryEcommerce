@@ -48,12 +48,11 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       if (existingIndex > -1) {
         const newItems = [...state.items];
         newItems[existingIndex].quantity += quantity;
-        return { ...state, items: newItems, isOpen: true };
+        return { ...state, items: newItems };
       }
       return {
         ...state,
         items: [...state.items, { product, quantity, size }],
-        isOpen: true,
       };
     }
     case "REMOVE_ITEM":

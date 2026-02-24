@@ -2,7 +2,8 @@
 
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import { products, categories, Product } from "@/data/mock";
+import { categories, Product } from "@/data/mock";
+import { useStoreData } from "@/context/AdminContext";
 import ProductCard from "@/components/ui/ProductCard";
 import QuickViewModal from "@/components/layout/QuickViewModal";
 import Link from "next/link";
@@ -12,6 +13,7 @@ import { ChevronRight } from "lucide-react";
 export default function CategoryPage() {
   const params = useParams();
   const slug = params.slug as string;
+  const { products } = useStoreData();
   const category = categories.find((c) => c.slug === slug);
   const categoryProducts = products.filter((p) => p.categorySlug === slug);
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
@@ -65,7 +67,7 @@ export default function CategoryPage() {
               <span className="text-overline uppercase tracking-[0.2em] text-gold font-medium">
                 Collection
               </span>
-              <h1 className="font-serif text-display text-ivory mt-2">
+              <h1 className="font-serif text-heading-1 sm:text-display text-ivory mt-2">
                 {category.name}
               </h1>
               <p className="text-body text-neutral-300 mt-3 max-w-md">

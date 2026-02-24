@@ -40,11 +40,11 @@ export default function SocialProof() {
     <section className="section-padding bg-cream">
       <div className="luxury-container">
         {/* Header */}
-        <div className="text-center mb-14">
-          <span className="text-overline uppercase tracking-[0.2em] text-gold font-medium">
+        <div className="text-center mb-8 sm:mb-14">
+          <span className="text-[10px] sm:text-overline uppercase tracking-[0.2em] text-gold font-medium">
             Testimonials
           </span>
-          <h2 className="font-serif text-heading-1 md:text-display text-neutral-900 mt-3">
+          <h2 className="font-serif text-heading-2 sm:text-heading-1 md:text-display text-neutral-900 mt-2 sm:mt-3">
             Loved by Thousands
           </h2>
 
@@ -71,7 +71,7 @@ export default function SocialProof() {
         {/* Reviews Grid */}
         <div
           ref={sectionRef}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
         >
           {reviews.map((review) => (
             <div

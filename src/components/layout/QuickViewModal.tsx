@@ -5,7 +5,8 @@ import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import Image from "next/image";
 import Link from "next/link";
-import { X, Heart, Star, ShieldCheck, Droplets, Sparkles } from "lucide-react";
+import { X, Heart, Star, ShieldCheck, Droplets, Sparkles, ShoppingBag } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface QuickViewModalProps {
@@ -14,6 +15,7 @@ interface QuickViewModalProps {
 }
 
 export default function QuickViewModal({ product, onClose }: QuickViewModalProps) {
+  const router = useRouter();
   const { addItem } = useCart();
   const { toggleItem, isInWishlist } = useWishlist();
   const [selectedImage, setSelectedImage] = useState(0);
@@ -31,17 +33,17 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
       />
 
       {/* Modal */}
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[85] w-[95vw] max-w-4xl bg-ivory shadow-soft-xl animate-scale-in overflow-hidden max-h-[90vh]">
+      <div className="fixed bottom-0 left-0 right-0 sm:bottom-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 z-[85] w-full sm:w-[95vw] sm:max-w-4xl bg-ivory shadow-soft-xl animate-slide-up sm:animate-scale-in overflow-hidden max-h-[85vh] sm:max-h-[90vh] rounded-t-2xl sm:rounded-none">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-2.5 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
         >
           <X size={18} />
         </button>
 
-        <div className="grid md:grid-cols-2 gap-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 overflow-y-auto max-h-[85vh] sm:max-h-[90vh]">
           {/* Images */}
-          <div className="relative aspect-square md:aspect-auto bg-neutral-100">
+          <div className="relative aspect-square sm:aspect-auto bg-neutral-100">
             <Image
               src={product.images[selectedImage]}
               alt={product.name}
@@ -75,7 +77,7 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
           </div>
 
           {/* Info */}
-          <div className="p-6 md:p-8 space-y-4 overflow-y-auto max-h-[50vh] md:max-h-[90vh]">
+          <div className="p-5 sm:p-6 md:p-8 space-y-4 overflow-y-auto max-h-[55vh] sm:max-h-[90vh]">
             <div>
               <p className="text-overline uppercase tracking-widest text-gold mb-2">
                 {product.category}
@@ -152,8 +154,9 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
                   addItem(product);
                   onClose();
                 }}
-                className="btn-primary flex-1"
+                className="btn-primary flex-1 gap-2"
               >
+                <ShoppingBag size={16} />
                 Add to Cart
               </button>
               <button

@@ -29,10 +29,10 @@ export default function PromoPopup() {
         className="fixed inset-0 bg-neutral-900/40 backdrop-blur-sm z-[90] animate-fade-in"
         onClick={handleClose}
       />
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[95] w-[90vw] max-w-lg bg-ivory p-8 md:p-10 shadow-soft-xl animate-scale-in text-center">
+      <div className="fixed top-auto bottom-0 sm:top-1/2 sm:bottom-auto left-0 sm:left-1/2 right-0 sm:right-auto sm:-translate-x-1/2 sm:-translate-y-1/2 z-[95] w-full sm:w-[90vw] sm:max-w-lg bg-ivory p-6 sm:p-8 md:p-10 shadow-soft-xl animate-slide-up sm:animate-scale-in text-center rounded-t-2xl sm:rounded-none safe-bottom">
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 p-1 text-neutral-400 hover:text-neutral-700 transition-colors"
+          className="absolute top-3 right-3 p-2.5 text-neutral-400 hover:text-neutral-700 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
         >
           <X size={18} />
         </button>
@@ -41,10 +41,10 @@ export default function PromoPopup() {
           <Gift size={24} className="text-gold" />
         </div>
 
-        <h3 className="font-serif text-heading-2 text-neutral-900 mb-2">
+        <h3 className="font-serif text-heading-3 sm:text-heading-2 text-neutral-900 mb-2">
           Get 10% Off
         </h3>
-        <p className="text-body-sm text-neutral-500 mb-6 max-w-sm mx-auto">
+        <p className="text-body-sm text-neutral-500 mb-5 sm:mb-6 max-w-sm mx-auto">
           Sign up for our newsletter and enjoy 10% off your first order. Plus, get early access to new collections.
         </p>
 
@@ -53,19 +53,19 @@ export default function PromoPopup() {
             e.preventDefault();
             handleClose();
           }}
-          className="flex gap-0 max-w-sm mx-auto"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-0 max-w-sm mx-auto"
         >
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email address"
-            className="flex-1 border border-neutral-200 px-4 py-3 text-body-sm outline-none focus:border-gold transition-colors bg-white"
+            className="flex-1 border border-neutral-200 px-4 py-3 text-body-sm outline-none focus:border-gold transition-colors bg-white min-h-[48px]"
             required
           />
           <button
             type="submit"
-            className="bg-neutral-900 text-ivory px-6 py-3 text-body-sm font-medium uppercase tracking-wide hover:bg-neutral-800 transition-colors whitespace-nowrap"
+            className="bg-neutral-900 text-ivory px-6 py-3 text-body-sm font-medium uppercase tracking-wide hover:bg-neutral-800 transition-colors whitespace-nowrap min-h-[48px]"
           >
             Get 10% Off
           </button>

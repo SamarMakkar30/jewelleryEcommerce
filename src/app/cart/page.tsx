@@ -30,12 +30,12 @@ export default function CartPage() {
 
   return (
     <div className="bg-ivory min-h-screen">
-      <div className="luxury-container py-10 md:py-16">
-        <h1 className="font-serif text-heading-1 text-neutral-900 mb-10">
+      <div className="luxury-container py-8 sm:py-10 md:py-16">
+        <h1 className="font-serif text-heading-2 sm:text-heading-1 text-neutral-900 mb-6 sm:mb-10">
           Shopping Cart
         </h1>
 
-        <div className="grid lg:grid-cols-3 gap-10">
+        <div className="grid lg:grid-cols-3 gap-8 sm:gap-10">
           {/* Items */}
           <div className="lg:col-span-2 space-y-0 divide-y divide-neutral-100">
             {state.items.map((item) => (
@@ -64,7 +64,7 @@ export default function CartPage() {
                     </div>
                     <button
                       onClick={() => removeItem(item.product.id)}
-                      className="p-1.5 hover:bg-neutral-100 rounded-full"
+                      className="p-2.5 hover:bg-neutral-100 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center -mr-1"
                     >
                       <X size={16} className="text-neutral-400" />
                     </button>
@@ -76,18 +76,18 @@ export default function CartPage() {
                         onClick={() =>
                           updateQuantity(item.product.id, item.quantity - 1)
                         }
-                        className="w-9 h-9 flex items-center justify-center hover:bg-neutral-100 transition-colors"
+                        className="w-11 h-11 sm:w-9 sm:h-9 flex items-center justify-center hover:bg-neutral-100 transition-colors"
                       >
                         <Minus size={12} />
                       </button>
-                      <span className="w-9 h-9 flex items-center justify-center text-body-sm font-medium border-x border-neutral-200">
+                      <span className="w-11 h-11 sm:w-9 sm:h-9 flex items-center justify-center text-body-sm font-medium border-x border-neutral-200">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() =>
                           updateQuantity(item.product.id, item.quantity + 1)
                         }
-                        className="w-9 h-9 flex items-center justify-center hover:bg-neutral-100 transition-colors"
+                        className="w-11 h-11 sm:w-9 sm:h-9 flex items-center justify-center hover:bg-neutral-100 transition-colors"
                       >
                         <Plus size={12} />
                       </button>

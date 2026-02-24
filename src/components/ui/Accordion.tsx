@@ -16,9 +16,9 @@ export default function Accordion({ items }: AccordionProps) {
         <div key={i}>
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            className="w-full flex items-center justify-between py-5 text-left group"
+            className="w-full flex items-center justify-between py-4 sm:py-5 text-left group min-h-[48px]"
           >
-            <span className="font-sans text-body font-medium text-neutral-800 pr-4 group-hover:text-neutral-600 transition-colors">
+            <span className="font-sans text-body-sm sm:text-body font-medium text-neutral-800 pr-4 group-hover:text-neutral-600 transition-colors">
               {item.question}
             </span>
             <ChevronDown
@@ -30,7 +30,7 @@ export default function Accordion({ items }: AccordionProps) {
           </button>
           <div
             className={`overflow-hidden transition-all duration-400 ease-luxury ${
-              openIndex === i ? "max-h-96 pb-5" : "max-h-0"
+              openIndex === i ? "max-h-96 pb-4 sm:pb-5" : "max-h-0"
             }`}
           >
             <p className="text-body-sm text-neutral-500 leading-relaxed">

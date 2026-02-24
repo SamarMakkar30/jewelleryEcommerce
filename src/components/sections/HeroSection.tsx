@@ -40,15 +40,15 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden bg-ivory">
+    <section className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-screen flex items-center overflow-hidden bg-ivory">
       <div className="luxury-container relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-4 items-center">
           {/* Left — Text Content */}
-          <div className="order-2 lg:order-1 pb-8 lg:pb-0">
+          <div className="order-2 lg:order-1 pb-6 sm:pb-8 lg:pb-0">
             {/* Overline */}
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-px bg-gold" />
-              <span className="text-overline uppercase tracking-[0.2em] text-gold font-medium">
+            <div className="flex items-center gap-2 mb-4 sm:mb-6">
+              <div className="w-6 sm:w-8 h-px bg-gold" />
+              <span className="text-[10px] sm:text-overline uppercase tracking-[0.2em] text-gold font-medium">
                 New Collection 2026
               </span>
             </div>
@@ -56,7 +56,7 @@ export default function HeroSection() {
             {/* Headline */}
             <h1
               ref={headlineRef}
-              className="font-serif text-[3rem] sm:text-display-xl lg:text-[5rem] xl:text-[5.5rem] leading-[1.02] text-neutral-900 mb-6"
+              className="font-serif text-[2.25rem] sm:text-[3rem] md:text-display-xl lg:text-[5rem] xl:text-[5.5rem] leading-[1.05] text-neutral-900 mb-4 sm:mb-6"
             >
               Waterproof.
               <br />
@@ -72,24 +72,24 @@ export default function HeroSection() {
             {/* Subtitle */}
             <p
               ref={subtitleRef}
-              className="text-body md:text-lg text-neutral-500 max-w-md mb-10 leading-relaxed"
+              className="text-body-sm sm:text-body md:text-lg text-neutral-500 max-w-md mb-7 sm:mb-10 leading-relaxed"
             >
               Premium jewellery that stays beautiful through every moment.
               Designed for the modern woman who never compromises.
             </p>
 
             {/* CTAs */}
-            <div ref={ctaRef} className="flex flex-wrap gap-4">
-              <MagneticButton className="btn-primary text-base px-10 py-4">
+            <div ref={ctaRef} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <MagneticButton className="btn-primary text-sm sm:text-base px-8 py-3.5 sm:px-10 sm:py-4 w-full sm:w-auto justify-center">
                 <Link href="/shop">Shop Now</Link>
               </MagneticButton>
-              <MagneticButton className="btn-outline text-base px-10 py-4">
+              <MagneticButton className="btn-outline text-sm sm:text-base px-8 py-3.5 sm:px-10 sm:py-4 w-full sm:w-auto justify-center">
                 <Link href="/shop?sort=newest">New Arrivals</Link>
               </MagneticButton>
             </div>
 
             {/* Social Proof Micro */}
-            <div className="mt-12 flex items-center gap-4 pt-8 border-t border-neutral-200/50">
+            <div className="mt-8 sm:mt-12 flex items-center gap-3 sm:gap-4 pt-6 sm:pt-8 border-t border-neutral-200/50">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
                   <div
@@ -119,7 +119,7 @@ export default function HeroSection() {
 
           {/* Right — Hero Image Collage */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end" ref={imageRef}>
-            <div className="relative w-full max-w-[560px] aspect-[4/5]">
+            <div className="relative w-full max-w-[360px] sm:max-w-[480px] lg:max-w-[560px] aspect-[4/5]">
               {/* Main Image */}
               <div className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-soft-xl">
                 <Image
@@ -184,7 +184,7 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in hidden sm:flex">
         <span className="text-overline text-neutral-400 uppercase tracking-widest">
           Scroll
         </span>

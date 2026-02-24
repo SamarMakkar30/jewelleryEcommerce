@@ -4,7 +4,6 @@ import FeaturedCategories from "@/components/sections/FeaturedCategories";
 import BestSellers from "@/components/sections/BestSellers";
 import LifestyleShowcase from "@/components/sections/LifestyleShowcase";
 import SocialProof from "@/components/sections/SocialProof";
-import PromoPopup from "@/components/sections/PromoPopup";
 
 export default function HomePage() {
   return (
@@ -15,7 +14,6 @@ export default function HomePage() {
       <BestSellers />
       <LifestyleShowcase />
       <SocialProof />
-      <PromoPopup />
     </>
   );
 }

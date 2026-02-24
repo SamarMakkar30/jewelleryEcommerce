@@ -11,11 +11,14 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     const init = async () => {
       try {
+        // Skip smooth scroll on touch devices — use native momentum scrolling
+        const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+        if (isTouchDevice) return;
+
         const Lenis = (await import("lenis")).default;
         lenis = new Lenis({
           duration: 1.2,
           easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          touchMultiplier: 2,
           infinite: false,
         });
 

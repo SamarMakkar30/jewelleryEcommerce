@@ -5,7 +5,7 @@ import { Review } from "@/data/mock";
 
 export default function ReviewCard({ review }: { review: Review }) {
   return (
-    <div className="bg-white p-6 md:p-8 shadow-soft-sm border border-neutral-100 space-y-4 relative group hover:shadow-soft transition-shadow duration-400">
+    <div className="bg-white p-5 sm:p-6 md:p-8 shadow-soft-sm border border-neutral-100 space-y-3 sm:space-y-4 relative group hover:shadow-soft transition-shadow duration-400">
       {/* Quote icon */}
       <Quote
         size={24}
