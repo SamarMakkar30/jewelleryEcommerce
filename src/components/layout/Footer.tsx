@@ -57,7 +57,7 @@ export default function Footer() {
               <MessageCircle size={28} className="text-[#25D366]" />
             </div>
             <h3 className="font-serif text-heading-3 sm:text-heading-2 text-ivory mb-3">
-              Get Updates on WhatsApp
+              Get Updates on Whatsapp
             </h3>
             <p className="text-body-sm text-neutral-400 mb-6 sm:mb-8 px-2">
               New drops, exclusive offers & restocks — be the first to know.
