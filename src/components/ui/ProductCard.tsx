@@ -88,7 +88,7 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
         {/* Wishlist Button — always visible on touch devices */}
         <button
           onClick={() => toggleItem(product)}
-          className={`absolute top-3 w-9 h-9 sm:w-8 sm:h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity duration-300 hover:bg-white ${discount > 0 ? 'right-14' : 'right-3'}`}
+          className={`absolute top-3 w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity duration-300 hover:bg-white ${discount > 0 ? 'right-14' : 'right-3'}`}
         >
           <Heart
             size={14}
@@ -100,7 +100,7 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
       {/* Info */}
       <div className="space-y-1 sm:space-y-1.5">
         <Link href={`/product/${product.slug}`}>
-          <h3 className="font-sans text-[12px] sm:text-body-sm font-medium text-neutral-800 group-hover:text-neutral-600 transition-colors line-clamp-2 leading-tight sm:leading-normal">
+          <h3 className="font-sans text-[13px] sm:text-body-sm font-medium text-neutral-800 group-hover:text-neutral-600 transition-colors line-clamp-2 leading-tight sm:leading-normal">
             {product.name}
           </h3>
         </Link>
@@ -120,7 +120,7 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
               />
             ))}
           </div>
-          <span className="text-[10px] sm:text-caption text-neutral-400">
+          <span className="text-[11px] sm:text-caption text-neutral-400">
             ({product.reviewCount})
           </span>
         </div>

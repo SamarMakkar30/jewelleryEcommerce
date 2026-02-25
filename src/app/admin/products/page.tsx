@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useAdmin } from "@/context/AdminContext";
 import { Product } from "@/data/mock";
 import {
@@ -185,9 +186,9 @@ function ProductForm({
             <div className="space-y-3">
               {form.images.map((img, i) => (
                 <div key={i} className="flex gap-3 items-start">
-                  <div className="w-14 h-14 bg-neutral-100 rounded-xl overflow-hidden flex-shrink-0 border border-neutral-200">
+                  <div className="w-14 h-14 bg-neutral-100 rounded-xl overflow-hidden flex-shrink-0 border border-neutral-200 relative">
                     {img ? (
-                      <img src={img} alt="" className="w-full h-full object-cover" />
+                      <Image src={img} alt="" fill sizes="56px" className="object-cover" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <ImageIcon size={18} className="text-neutral-300" />
@@ -487,8 +488,8 @@ export default function AdminProductsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr_1fr_80px] gap-3 md:gap-4 items-center px-5 sm:px-6 py-4 hover:bg-neutral-50/50 transition-colors">
                   {/* Product */}
                   <div className="flex items-center gap-3 sm:gap-4">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-neutral-100 rounded-xl overflow-hidden flex-shrink-0 border border-neutral-200">
-                      <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-neutral-100 rounded-xl overflow-hidden flex-shrink-0 border border-neutral-200 relative">
+                      <Image src={product.images[0]} alt={product.name} fill sizes="56px" className="object-cover" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-neutral-800 truncate">{product.name}</p>

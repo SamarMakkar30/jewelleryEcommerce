@@ -118,21 +118,21 @@ export default function ProductPage() {
   ];
 
   return (
-    <div className="bg-ivory">
+    <div className="bg-ivory pb-24 md:pb-0">
       {/* Breadcrumb */}
       <div className="luxury-container py-4">
         <nav className="flex items-center gap-2 text-caption text-neutral-400">
-          <Link href="/" className="hover:text-neutral-700 transition-colors">
+          <Link href="/" className="hover:text-neutral-700 transition-colors py-1.5 inline-block">
             Home
           </Link>
           <ChevronRight size={12} />
-          <Link href="/shop" className="hover:text-neutral-700 transition-colors">
+          <Link href="/shop" className="hover:text-neutral-700 transition-colors py-1.5 inline-block">
             Shop
           </Link>
           <ChevronRight size={12} />
           <Link
             href={`/category/${product.categorySlug}`}
-            className="hover:text-neutral-700 transition-colors"
+            className="hover:text-neutral-700 transition-colors py-1.5 inline-block"
           >
             {product.category}
           </Link>
@@ -149,10 +149,14 @@ export default function ProductPage() {
             {/* Main Image */}
             <div
               ref={imageRef}
-              className="relative aspect-[3/4] bg-neutral-100 overflow-hidden cursor-zoom-in"
-              onMouseEnter={() => setIsZoomed(true)}
+              className="relative aspect-[3/4] bg-neutral-100 overflow-hidden md:cursor-zoom-in"
+              onMouseEnter={() => {
+                if (window.matchMedia('(hover: hover)').matches) setIsZoomed(true);
+              }}
               onMouseLeave={() => setIsZoomed(false)}
-              onMouseMove={handleZoom}
+              onMouseMove={(e) => {
+                if (window.matchMedia('(hover: hover)').matches) handleZoom(e);
+              }}
             >
               <Image
                 src={product.images[selectedImage]}
@@ -186,7 +190,7 @@ export default function ProductPage() {
                 </div>
               )}
 
-              <button className="absolute bottom-4 right-4 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center z-10">
+              <button className="absolute bottom-4 right-4 w-11 h-11 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center z-10 md:w-10 md:h-10">
                 <ZoomIn size={18} className="text-neutral-600" />
               </button>
             </div>
@@ -368,7 +372,7 @@ export default function ProductPage() {
             <div className="flex gap-4">
               <button
                 onClick={() => toggleItem(product)}
-                className={`flex items-center gap-2 text-body-sm transition-colors ${
+                className={`flex items-center gap-2 text-body-sm transition-colors py-2.5 min-h-[44px] ${
                   wishlisted
                     ? "text-red-500"
                     : "text-neutral-500 hover:text-neutral-700"
@@ -380,7 +384,7 @@ export default function ProductPage() {
                 />
                 {wishlisted ? "Saved" : "Add to Wishlist"}
               </button>
-              <button className="flex items-center gap-2 text-body-sm text-neutral-500 hover:text-neutral-700 transition-colors">
+              <button className="flex items-center gap-2 text-body-sm text-neutral-500 hover:text-neutral-700 transition-colors py-2.5 min-h-[44px]">
                 <Share2 size={16} />
                 Share
               </button>

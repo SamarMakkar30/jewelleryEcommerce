@@ -126,12 +126,17 @@ export default function HeroSection() {
                   src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop&q=80"
                   alt="Luxury gold jewellery collection"
                   fill
-                  className="object-cover"
+                  className="object-cover animate-hero-zoom"
                   priority
                   sizes="(max-width: 1024px) 90vw, 45vw"
                 />
                 {/* Soft overlay at bottom for blending */}
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/10 to-transparent" />
+                {/* Floating shimmer highlight */}
+                <div className="absolute inset-0 animate-shimmer-float pointer-events-none" style={{
+                  background: 'linear-gradient(105deg, transparent 40%, rgba(212,175,55,0.08) 45%, rgba(255,255,255,0.15) 50%, rgba(212,175,55,0.08) 55%, transparent 60%)',
+                  backgroundSize: '200% 100%',
+                }} />
               </div>
 
               {/* Floating accent card — top right */}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useAdmin } from "@/context/AdminContext";
+import Image from "next/image";
 import {
   Package,
   ShoppingCart,
@@ -200,8 +201,8 @@ export default function AdminDashboard() {
           <div className="space-y-2.5">
             {products.slice(0, 3).map((product) => (
               <div key={product.id} className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-neutral-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
-                  <img src={product.images[0]} alt="" className="w-full h-full object-cover" />
+                <div className="w-10 h-10 bg-neutral-100 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0 relative">
+                  <Image src={product.images[0]} alt={product.name} fill sizes="40px" className="object-cover" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-medium text-neutral-800 truncate">{product.name}</p>

@@ -50,7 +50,7 @@ export default function Header() {
   return (
     <>
       {/* Announcement Bar */}
-      <div className="bg-neutral-900 text-ivory text-center py-2 px-4 text-[10px] sm:text-overline uppercase tracking-widest safe-top">
+      <div className="bg-neutral-900 text-ivory text-center py-2 px-4 text-[11px] sm:text-overline uppercase tracking-widest safe-top">
         {settings.announcementText}
       </div>
 
@@ -243,7 +243,7 @@ export default function Header() {
                         setSearchOpen(false);
                         setSearchQuery("");
                       }}
-                      className="px-4 py-2.5 bg-neutral-100 text-body-sm text-neutral-600 hover:bg-neutral-200 transition-colors rounded-pill min-h-[40px]"
+                      className="px-4 py-2.5 bg-neutral-100 text-body-sm text-neutral-600 hover:bg-neutral-200 transition-colors rounded-pill min-h-[44px]"
                     >
                       {tag}
                     </button>

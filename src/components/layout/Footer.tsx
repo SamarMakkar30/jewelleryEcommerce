@@ -3,7 +3,7 @@
 import { useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Instagram, Facebook, Twitter, Youtube, Mail, MapPin, Phone } from "lucide-react";
+import { Instagram, Facebook, Twitter, Youtube, Mail, MapPin, Phone, MessageCircle } from "lucide-react";
 import { useStoreData } from "@/context/AdminContext";
 
 const footerLinks = {
@@ -49,30 +49,29 @@ export default function Footer() {
   }, [router]);
   return (
     <footer className="bg-neutral-900 text-neutral-300">
-      {/* Newsletter */}
+      {/* WhatsApp CTA */}
       <div className="border-b border-neutral-800">
         <div className="luxury-container py-12 sm:py-16 md:py-20">
           <div className="max-w-xl mx-auto text-center">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366]/10 mb-5">
+              <MessageCircle size={28} className="text-[#25D366]" />
+            </div>
             <h3 className="font-serif text-heading-3 sm:text-heading-2 text-ivory mb-3">
-              Join the Inner Circle
+              Get Updates on WhatsApp
             </h3>
             <p className="text-body-sm text-neutral-400 mb-6 sm:mb-8 px-2">
-              Be the first to know about new collections, exclusive offers, and
-              styling tips. Get 10% off your first order.
+              New drops, exclusive offers & restocks — be the first to know.
+              Chat with us anytime for styling help or order queries.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 sm:gap-0 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 bg-neutral-800 border border-neutral-700 px-5 py-3.5 text-body-sm text-ivory placeholder:text-neutral-500 outline-none focus:border-gold transition-colors min-h-[48px]"
-              />
-              <button
-                type="submit"
-                className="bg-gold text-white px-6 py-3.5 text-body-sm font-medium uppercase tracking-wide hover:bg-gold-dark transition-colors whitespace-nowrap min-h-[48px]"
-              >
-                Subscribe
-              </button>
-            </form>
+            <a
+              href="https://wa.me/917206889528?text=Hi%20Lunara!%20I%27d%20love%20to%20get%20updates%20on%20new%20collections%20and%20offers%20%E2%9C%A8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 bg-[#25D366] text-white px-8 py-3.5 text-body-sm font-medium uppercase tracking-wide hover:bg-[#1ebe5d] transition-colors min-h-[48px] rounded-sm"
+            >
+              <MessageCircle size={18} />
+              Chat with Us
+            </a>
           </div>
         </div>
       </div>
@@ -97,7 +96,7 @@ export default function Footer() {
                 <a
                   key={i}
                   href="#"
-                  className="w-10 h-10 flex items-center justify-center border border-neutral-700 text-neutral-400 hover:text-ivory hover:border-gold transition-colors"
+                  className="w-11 h-11 flex items-center justify-center border border-neutral-700 text-neutral-400 hover:text-ivory hover:border-gold transition-colors"
                 >
                   <Icon size={18} />
                 </a>
@@ -115,7 +114,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-body-sm text-neutral-400 hover:text-ivory transition-colors"
+                    className="text-body-sm text-neutral-400 hover:text-ivory transition-colors py-1.5 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -134,7 +133,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-body-sm text-neutral-400 hover:text-ivory transition-colors"
+                    className="text-body-sm text-neutral-400 hover:text-ivory transition-colors py-1.5 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -153,7 +152,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-body-sm text-neutral-400 hover:text-ivory transition-colors"
+                    className="text-body-sm text-neutral-400 hover:text-ivory transition-colors py-1.5 inline-block"
                   >
                     {link.label}
                   </Link>

@@ -129,7 +129,7 @@ export default function AccountPage() {
                 {!isEditing ? (
                   <button
                     onClick={() => setIsEditing(true)}
-                    className="text-body-sm font-medium text-gold hover:text-neutral-900 transition-colors"
+                    className="text-body-sm font-medium text-gold hover:text-neutral-900 transition-colors py-2 px-3 min-h-[44px] flex items-center"
                   >
                     Edit
                   </button>
@@ -137,13 +137,13 @@ export default function AccountPage() {
                   <div className="flex gap-3">
                     <button
                       onClick={() => setIsEditing(false)}
-                      className="text-body-sm text-neutral-400 hover:text-neutral-700 transition-colors"
+                      className="text-body-sm text-neutral-400 hover:text-neutral-700 transition-colors py-2 px-3 min-h-[44px] flex items-center"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={handleSave}
-                      className="text-body-sm font-medium text-gold hover:text-neutral-900 transition-colors"
+                      className="text-body-sm font-medium text-gold hover:text-neutral-900 transition-colors py-2 px-3 min-h-[44px] flex items-center"
                     >
                       Save
                     </button>

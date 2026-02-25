@@ -3,7 +3,8 @@ import HeroSection from "@/components/sections/HeroSection";
 import TrustStrip from "@/components/sections/TrustStrip";
 import FeaturedCategories from "@/components/sections/FeaturedCategories";
 import BestSellers from "@/components/sections/BestSellers";
-import LifestyleShowcase from "@/components/sections/LifestyleShowcase";
+import PromoBanner from "@/components/sections/PromoBanner";
+import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import SocialProof from "@/components/sections/SocialProof";
 
 export const metadata: Metadata = {
@@ -23,7 +24,8 @@ export default function HomePage() {
       <TrustStrip />
       <FeaturedCategories />
       <BestSellers />
-      <LifestyleShowcase />
+      <PromoBanner />
+      <WhyChooseUs />
       <SocialProof />
     </>
   );

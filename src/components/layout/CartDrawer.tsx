@@ -145,7 +145,7 @@ export default function CartDrawer() {
         {state.items.length > 0 && (
           <div className="border-t border-neutral-100 px-4 sm:px-6 py-4 sm:py-5 space-y-4 safe-bottom">
             {/* Trust Badges */}
-            <div className="flex items-center justify-center gap-4 text-caption text-neutral-400">
+            <div className="flex items-center justify-center gap-4 text-caption text-neutral-400 flex-wrap">
               <span className="flex items-center gap-1">
                 <Truck size={13} /> Free Delivery
               </span>
@@ -179,7 +179,7 @@ export default function CartDrawer() {
             </Link>
             <button
               onClick={closeCart}
-              className="w-full text-center text-body-sm text-neutral-500 hover:text-neutral-700 transition-colors py-1"
+              className="w-full text-center text-body-sm text-neutral-500 hover:text-neutral-700 transition-colors py-2.5 min-h-[44px]"
             >
               Continue Shopping
             </button>

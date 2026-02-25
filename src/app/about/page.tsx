@@ -21,6 +21,7 @@ export default function AboutPage() {
           src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1920&h=1080&fit=crop"
           alt="About Lunara"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

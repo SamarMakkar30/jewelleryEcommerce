@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -130,10 +131,12 @@ function LoginScreen() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <img
+          <Image
             src="/logo.jpeg"
             alt="Lunara Jewels"
-            className="w-32 h-32 object-contain rounded-2xl mx-auto mb-4 shadow-gold"
+            width={128}
+            height={128}
+            className="object-contain rounded-2xl mx-auto mb-4 shadow-gold"
           />
           <h1 className="font-serif text-2xl text-white tracking-wide">LUNARA JEWELS</h1>
           <p className="text-sm text-neutral-500 mt-1">Admin Panel</p>

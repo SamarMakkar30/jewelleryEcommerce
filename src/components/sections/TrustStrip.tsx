@@ -1,6 +1,6 @@
 "use client";
 
-import { Droplets, Shield, Heart, RotateCcw, Truck, Package } from "lucide-react";
+import { Droplets, Shield, Heart, RotateCcw, Banknote } from "lucide-react";
 import { trustFeatures } from "@/data/mock";
 import { useEffect, useRef } from "react";
 
@@ -9,8 +9,7 @@ const iconMap: Record<string, React.ElementType> = {
   Shield,
   Heart,
   RotateCcw,
-  Truck,
-  Package,
+  Banknote,
 };
 
 export default function TrustStrip() {
@@ -43,7 +42,7 @@ export default function TrustStrip() {
     <section className="bg-cream border-y border-blush">
       <div
         ref={stripRef}
-        className="luxury-container py-8 sm:py-10 md:py-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8"
+        className="luxury-container py-8 sm:py-10 md:py-14 grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8"
       >
         {trustFeatures.map((feature, i) => {
           const Icon = iconMap[feature.icon] || Shield;
@@ -58,7 +57,7 @@ export default function TrustStrip() {
               <h4 className="text-[12px] sm:text-body-sm font-semibold text-neutral-800 mb-1">
                 {feature.title}
               </h4>
-              <p className="text-[11px] sm:text-caption text-neutral-400">
+              <p className="text-[11px] sm:text-caption text-neutral-400 leading-snug">
                 {feature.description}
               </p>
             </div>

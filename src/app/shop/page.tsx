@@ -142,7 +142,7 @@ export default function ShopPage() {
               {/* Filter Toggle */}
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center gap-2 text-body-sm font-medium text-neutral-700 hover:text-neutral-900 transition-colors min-h-[40px] px-2"
+                className="flex items-center gap-2 text-body-sm font-medium text-neutral-700 hover:text-neutral-900 transition-colors min-h-[44px] px-2"
               >
                 <SlidersHorizontal size={16} />
                 Filters
@@ -206,7 +206,7 @@ export default function ShopPage() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-transparent border border-neutral-200 px-3 py-2 pr-7 sm:px-4 sm:pr-8 text-[12px] sm:text-body-sm text-neutral-700 outline-none focus:border-gold cursor-pointer min-h-[40px]"
+                  className="appearance-none bg-transparent border border-neutral-200 px-3 py-2 pr-7 sm:px-4 sm:pr-8 text-[12px] sm:text-body-sm text-neutral-700 outline-none focus:border-gold cursor-pointer min-h-[44px]"
                 >
                   {sortOptions.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -231,7 +231,7 @@ export default function ShopPage() {
                 </h3>
                 <button
                   onClick={() => setShowFilters(false)}
-                  className="p-1"
+                  className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center"
                 >
                   <X size={16} />
                 </button>
@@ -245,7 +245,7 @@ export default function ShopPage() {
                   <div className="flex flex-wrap gap-2">
                     <button
                       onClick={() => setSelectedCategory("all")}
-                      className={`px-3 py-2 text-body-sm border transition-colors min-h-[36px] ${
+                      className={`px-3 py-2 text-body-sm border transition-colors min-h-[44px] ${
                         selectedCategory === "all"
                           ? "border-neutral-900 bg-neutral-900 text-ivory"
                           : "border-neutral-200 text-neutral-600"
@@ -257,7 +257,7 @@ export default function ShopPage() {
                       <button
                         key={cat.slug}
                         onClick={() => setSelectedCategory(cat.slug)}
-                        className={`px-3 py-2 text-body-sm border transition-colors min-h-[36px] ${
+                        className={`px-3 py-2 text-body-sm border transition-colors min-h-[44px] ${
                           selectedCategory === cat.slug
                             ? "border-neutral-900 bg-neutral-900 text-ivory"
                             : "border-neutral-200 text-neutral-600"

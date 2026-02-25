@@ -6,27 +6,27 @@ import { useEffect, useRef } from "react";
 const lifestyleImages = [
   {
     src: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&h=750&fit=crop",
-    alt: "Woman wearing minimal gold necklace",
+    alt: "Gold necklace on warm fabric",
     span: "col-span-1 row-span-2",
   },
   {
-    src: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&h=360&fit=crop",
-    alt: "Jewellery detail shot",
+    src: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&h=360&fit=crop",
+    alt: "Gold earrings warm styling",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&h=360&fit=crop",
-    alt: "Earrings style shot",
+    src: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=600&h=360&fit=crop",
+    alt: "Gold rings close-up",
     span: "col-span-1 row-span-1",
   },
   {
     src: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=750&fit=crop",
-    alt: "Necklace close-up",
+    alt: "Gold chain necklace detail",
     span: "col-span-1 row-span-2",
   },
   {
-    src: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&h=360&fit=crop",
-    alt: "Bracelet on wrist",
+    src: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=600&h=360&fit=crop",
+    alt: "Gold bracelet styling",
     span: "col-span-1 row-span-1",
   },
 ];
