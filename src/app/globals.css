@@ -200,6 +200,47 @@
   }
 }
 
+/* ─── Mobile-specific enhancements ─────────────────────────────────── */
+@media (max-width: 639px) {
+  /* Improve momentum scrolling on iOS */
+  .overflow-y-auto,
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Reduce heavy animations on mobile for performance */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Better font rendering on small screens */
+  body {
+    text-rendering: optimizeSpeed;
+  }
+
+  /* Prevent text from being too small on mobile */
+  .text-caption {
+    font-size: 11px;
+  }
+}
+
+/* Active state feedback for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  button:active,
+  a:active {
+    opacity: 0.85;
+    transition: opacity 0.1s ease;
+  }
+
+  /* Make scrollable areas obvious with inertia */
+  .no-scrollbar {
+    scroll-snap-type: x proximity;
+  }
+}
+
 /* Hero slow-zoom image */
 @keyframes hero-zoom {
   0% { transform: scale(1); }

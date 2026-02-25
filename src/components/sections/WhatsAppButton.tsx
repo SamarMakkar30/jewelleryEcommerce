@@ -12,7 +12,7 @@ export default function WhatsAppButton() {
       href={`https://wa.me/${phoneDigits}?text=Hi! I have a query about ${settings.siteName}.`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-soft-lg hover:bg-green-600 hover:scale-110 transition-all duration-300 group"
+      className="fixed bottom-[5.5rem] sm:bottom-6 right-4 sm:right-6 z-50 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
       aria-label="Chat on WhatsApp"
     >
       <MessageCircle size={22} />

@@ -42,7 +42,7 @@ export default function TrustStrip() {
     <section className="bg-cream border-y border-blush">
       <div
         ref={stripRef}
-        className="luxury-container py-8 sm:py-10 md:py-14 grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8"
+        className="luxury-container py-8 sm:py-10 md:py-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-8"
       >
         {trustFeatures.map((feature, i) => {
           const Icon = iconMap[feature.icon] || Shield;

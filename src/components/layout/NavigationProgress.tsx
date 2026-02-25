@@ -1,8 +1,6 @@
 "use client";
-
 import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
-
 export default function NavigationProgress() {
   const pathname = usePathname();
   const [progress, setProgress] = useState(0);

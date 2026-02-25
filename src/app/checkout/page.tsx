@@ -143,7 +143,7 @@ ${itemLines}
         </div>
       </div>
 
-      <div className="luxury-container py-8 sm:py-12 pb-12 sm:pb-16">
+      <div className="luxury-container py-6 sm:py-12 pb-8 sm:pb-16">
         <div className="grid lg:grid-cols-5 gap-8 sm:gap-10">
           {/* Form */}
           <div className="lg:col-span-3 space-y-6">
@@ -251,7 +251,7 @@ ${itemLines}
 
             <button
               onClick={handleSubmit}
-              className="btn-gold w-full mt-4 gap-2"
+              className="btn-gold w-full mt-4 gap-2 py-4 text-base"
             >
               <MessageCircle size={18} />
               Place Order via WhatsApp

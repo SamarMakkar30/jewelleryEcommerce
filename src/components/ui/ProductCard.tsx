@@ -67,10 +67,10 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
         )}
 
         {/* Hover Actions — visible on hover (desktop) or always on touch */}
-        <div className="absolute bottom-0 left-0 right-0 p-2.5 sm:p-3 flex gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-luxury touch-show">
+        <div className="absolute bottom-0 left-0 right-0 p-2.5 sm:p-3 flex gap-2 sm:translate-y-full sm:group-hover:translate-y-0 transition-transform duration-400 ease-luxury touch-show bg-gradient-to-t from-black/40 via-black/20 to-transparent pt-8 sm:pt-3 sm:bg-none">
           <button
             onClick={() => addItem(product)}
-            className="flex-1 bg-neutral-900 text-ivory text-[12px] sm:text-body-sm font-medium py-2.5 sm:py-2.5 flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-neutral-800 transition-colors min-h-[44px]"
+            className="flex-1 bg-neutral-900 text-ivory text-[12px] sm:text-body-sm font-medium py-3 sm:py-2.5 flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-neutral-800 transition-colors min-h-[44px] rounded-sm sm:rounded-none"
           >
             <ShoppingBag size={14} />
             Add to Cart

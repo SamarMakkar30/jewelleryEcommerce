@@ -142,7 +142,7 @@ export default function ShopPage() {
               {/* Filter Toggle */}
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center gap-2 text-body-sm font-medium text-neutral-700 hover:text-neutral-900 transition-colors min-h-[44px] px-2"
+                className={`flex items-center gap-2 text-body-sm font-medium transition-colors min-h-[44px] px-3 py-2 rounded-lg border ${showFilters ? 'border-neutral-900 bg-neutral-900 text-ivory' : 'border-neutral-200 text-neutral-700 hover:text-neutral-900'}`}
               >
                 <SlidersHorizontal size={16} />
                 Filters
@@ -219,6 +219,27 @@ export default function ShopPage() {
                   className="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none"
                 />
               </div>
+            </div>
+          </div>
+
+          {/* Mobile Category Scroll */}
+          <div className="md:hidden mb-5 -mx-4 px-4 overflow-x-auto no-scrollbar">
+            <div className="flex gap-2 min-w-max pb-1">
+              <button
+                onClick={() => setSelectedCategory("all")}
+                className={`px-4 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors min-h-[40px] ${selectedCategory === "all" ? "bg-neutral-900 text-ivory" : "bg-neutral-100 text-neutral-600"}`}
+              >
+                All
+              </button>
+              {categories.map((cat) => (
+                <button
+                  key={cat.slug}
+                  onClick={() => setSelectedCategory(cat.slug)}
+                  className={`px-4 py-2 text-[13px] font-medium rounded-full whitespace-nowrap transition-colors min-h-[40px] ${selectedCategory === cat.slug ? "bg-neutral-900 text-ivory" : "bg-neutral-100 text-neutral-600"}`}
+                >
+                  {cat.name}
+                </button>
+              ))}
             </div>
           </div>
 

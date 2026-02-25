@@ -257,8 +257,8 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[55] bg-ivory animate-slide-in-right lg:hidden overflow-y-auto">
-          <div className="p-5 pt-20 pb-24 space-y-1">
+        <div className="fixed inset-0 z-[55] bg-ivory animate-slide-in-right lg:hidden overflow-y-auto overscroll-contain">
+          <div className="p-5 pt-20 pb-32 space-y-1">
             {navigation.map((item) => (
               <div key={item.label}>
                 <Link
@@ -303,6 +303,13 @@ export default function Header() {
                 className="flex items-center gap-3 text-body text-neutral-600 py-3 min-h-[48px]"
               >
                 <User size={20} /> Account
+              </Link>
+              <Link
+                href="/track-order"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-3 text-body text-neutral-600 py-3 min-h-[48px]"
+              >
+                <ShoppingBag size={20} /> Track Order
               </Link>
             </div>
           </div>

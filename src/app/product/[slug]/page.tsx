@@ -498,18 +498,25 @@ export default function ProductPage() {
       <div className="fixed bottom-0 left-0 right-0 bg-ivory/95 backdrop-blur-xl border-t border-neutral-100 px-4 py-3 z-40 md:hidden safe-bottom">
         <div className="flex items-center gap-3">
           <div className="min-w-0 flex-shrink">
-            <p className="text-body-sm font-medium text-neutral-900 line-clamp-1">
+            <p className="text-[13px] font-medium text-neutral-900 line-clamp-1">
               {product.name}
             </p>
-            <p className="font-serif text-heading-4 text-neutral-900">
-              ₹{product.price.toLocaleString()}
-            </p>
+            <div className="flex items-center gap-2">
+              <p className="font-serif text-lg text-neutral-900">
+                ₹{product.price.toLocaleString()}
+              </p>
+              {product.comparePrice && (
+                <p className="text-xs text-neutral-400 line-through">
+                  ₹{product.comparePrice.toLocaleString()}
+                </p>
+              )}
+            </div>
           </div>
           <button
             onClick={() => addItem(product, quantity)}
-            className="btn-primary flex-1 py-3 min-h-[48px]"
+            className="btn-primary flex-1 py-3.5 min-h-[48px] text-[13px]"
           >
-            <ShoppingBag size={16} className="mr-2" />
+            <ShoppingBag size={16} className="mr-1.5" />
             Add to Cart
           </button>
         </div>

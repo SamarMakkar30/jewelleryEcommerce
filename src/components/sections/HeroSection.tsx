@@ -40,7 +40,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-screen flex items-center overflow-hidden bg-ivory">
+    <section className="relative min-h-[80vh] sm:min-h-[90vh] md:min-h-screen flex items-center overflow-hidden bg-ivory">
       <div className="luxury-container relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-4 items-center">
           {/* Left — Text Content */}
@@ -80,10 +80,10 @@ export default function HeroSection() {
 
             {/* CTAs */}
             <div ref={ctaRef} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <MagneticButton className="btn-primary text-sm sm:text-base px-8 py-3.5 sm:px-10 sm:py-4 w-full sm:w-auto justify-center">
+              <MagneticButton className="btn-primary text-sm sm:text-base px-8 py-4 sm:px-10 sm:py-4 w-full sm:w-auto justify-center">
                 <Link href="/shop">Shop Now</Link>
               </MagneticButton>
-              <MagneticButton className="btn-outline text-sm sm:text-base px-8 py-3.5 sm:px-10 sm:py-4 w-full sm:w-auto justify-center">
+              <MagneticButton className="btn-outline text-sm sm:text-base px-8 py-4 sm:px-10 sm:py-4 w-full sm:w-auto justify-center">
                 <Link href="/shop?sort=newest">New Arrivals</Link>
               </MagneticButton>
             </div>

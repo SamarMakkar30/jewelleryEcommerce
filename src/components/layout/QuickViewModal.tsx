@@ -37,7 +37,11 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
       />
 
       {/* Modal */}
-      <div className="fixed bottom-0 left-0 right-0 sm:bottom-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 z-[85] w-full sm:w-[95vw] sm:max-w-4xl bg-ivory shadow-soft-xl animate-slide-up sm:animate-scale-in overflow-hidden max-h-[85vh] sm:max-h-[90vh] rounded-t-2xl sm:rounded-none">
+      <div className="fixed bottom-0 left-0 right-0 sm:bottom-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 z-[85] w-full sm:w-[95vw] sm:max-w-4xl bg-ivory shadow-soft-xl animate-slide-up sm:animate-scale-in overflow-hidden max-h-[90vh] sm:max-h-[90vh] rounded-t-2xl sm:rounded-none">
+        {/* Drag indicator for mobile sheet */}
+        <div className="sm:hidden flex justify-center pt-2 pb-1">
+          <div className="w-10 h-1 bg-neutral-300 rounded-full" />
+        </div>
         <button
           onClick={onClose}
           className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-2.5 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"

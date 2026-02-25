@@ -77,8 +77,8 @@ export default function Footer() {
       </div>
 
       {/* Links Grid */}
-      <div className="luxury-container py-12 sm:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
+      <div className="luxury-container py-10 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="inline-block mb-4">
