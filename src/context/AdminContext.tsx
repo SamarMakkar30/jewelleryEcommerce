@@ -1,7 +1,15 @@
 "use client";
 
-import React, { createContext, useContext, useReducer, useEffect, useCallback } from "react";
+import React, { createContext, useContext, useReducer, useEffect, useCallback, useRef } from "react";
 import { Product, products as defaultProducts } from "@/data/mock";
+import {
+  addOrderToFirestore,
+  updateOrderStatusInFirestore,
+  subscribeToOrders,
+  saveSettingsToFirestore,
+  loadSettingsFromFirestore,
+  isFirebaseConfigured,
+} from "@/lib/firestore";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 export interface Order {
@@ -130,13 +138,16 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     isAuthenticated: false,
   });
 
-  // Load from localStorage on mount
+  const firestoreActive = useRef(false);
+  const isListeningToFirestore = useRef(false);
+
+  // ─── 1. Load from localStorage on mount (instant, offline-first) ────────
   useEffect(() => {
     try {
       const saved = localStorage.getItem("lunara-admin");
       if (saved) {
         const parsed = JSON.parse(saved);
-        // Clear legacy sample orders (ORD-1001 to ORD-1005)
+        // Clear legacy sample orders
         if (parsed.orders && Array.isArray(parsed.orders)) {
           const sampleIds = ["ORD-1001", "ORD-1002", "ORD-1003", "ORD-1004", "ORD-1005"];
           parsed.orders = parsed.orders.filter(
@@ -150,7 +161,37 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Save to localStorage on state change
+  // ─── 2. Connect to Firestore if configured ─────────────────────────────
+  useEffect(() => {
+    if (!isFirebaseConfigured()) {
+      console.log("Firebase not configured — using localStorage only");
+      return;
+    }
+
+    firestoreActive.current = true;
+
+    // Subscribe to real-time orders from Firestore
+    if (!isListeningToFirestore.current) {
+      isListeningToFirestore.current = true;
+      const unsubscribe = subscribeToOrders((orders) => {
+        dispatch({ type: "SET_ORDERS", payload: orders });
+      });
+
+      // Load settings from Firestore
+      loadSettingsFromFirestore().then((settings) => {
+        if (settings) {
+          dispatch({ type: "SET_SETTINGS", payload: settings });
+        }
+      });
+
+      return () => {
+        unsubscribe();
+        isListeningToFirestore.current = false;
+      };
+    }
+  }, []);
+
+  // ─── 3. Save to localStorage on state change (always, as backup) ───────
   useEffect(() => {
     try {
       const toSave = {
@@ -177,16 +218,33 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     []
   );
   const addOrder = useCallback(
-    (order: Order) => dispatch({ type: "ADD_ORDER", payload: order }),
+    (order: Order) => {
+      dispatch({ type: "ADD_ORDER", payload: order });
+      // Sync to Firestore
+      if (firestoreActive.current) {
+        addOrderToFirestore(order);
+      }
+    },
     []
   );
   const updateOrderStatus = useCallback(
-    (id: string, status: Order["status"]) =>
-      dispatch({ type: "UPDATE_ORDER_STATUS", payload: { id, status } }),
+    (id: string, status: Order["status"]) => {
+      dispatch({ type: "UPDATE_ORDER_STATUS", payload: { id, status } });
+      // Sync to Firestore
+      if (firestoreActive.current) {
+        updateOrderStatusInFirestore(id, status);
+      }
+    },
     []
   );
   const updateSettings = useCallback(
-    (settings: SiteSettings) => dispatch({ type: "SET_SETTINGS", payload: settings }),
+    (settings: SiteSettings) => {
+      dispatch({ type: "SET_SETTINGS", payload: settings });
+      // Sync to Firestore
+      if (firestoreActive.current) {
+        saveSettingsToFirestore(settings);
+      }
+    },
     []
   );
   const login = useCallback(
