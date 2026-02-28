@@ -156,6 +156,11 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         }
         dispatch({ type: "LOAD_STATE", payload: parsed });
       }
+      // Restore admin session
+      const authSession = sessionStorage.getItem("lunara-admin-auth");
+      if (authSession === "true") {
+        dispatch({ type: "LOGIN" });
+      }
     } catch {
       // ignore
     }
@@ -251,13 +256,17 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     (password: string) => {
       if (password === ADMIN_PASSWORD) {
         dispatch({ type: "LOGIN" });
+        try { sessionStorage.setItem("lunara-admin-auth", "true"); } catch {}
         return true;
       }
       return false;
     },
     []
   );
-  const logout = useCallback(() => dispatch({ type: "LOGOUT" }), []);
+  const logout = useCallback(() => {
+    dispatch({ type: "LOGOUT" });
+    try { sessionStorage.removeItem("lunara-admin-auth"); } catch {}
+  }, []);
 
   return (
     <AdminContext.Provider

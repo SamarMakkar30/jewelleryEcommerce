@@ -1,12 +1,9 @@
 import {
   collection,
   doc,
-  addDoc,
   updateDoc,
   deleteDoc,
   onSnapshot,
-  query,
-  orderBy,
   setDoc,
   getDoc,
   Unsubscribe,
@@ -58,14 +55,14 @@ export async function deleteOrderFromFirestore(orderId: string): Promise<void> {
 export function subscribeToOrders(
   callback: (orders: Order[]) => void
 ): Unsubscribe {
-  const q = query(collection(db, ORDERS_COLLECTION), orderBy("createdAt", "desc"));
+  const colRef = collection(db, ORDERS_COLLECTION);
   return onSnapshot(
-    q,
+    colRef,
     (snapshot) => {
-      const orders: Order[] = snapshot.docs.map((doc) => {
-        const data = doc.data();
+      const orders: Order[] = snapshot.docs.map((docSnap) => {
+        const data = docSnap.data();
         return {
-          id: data.id || doc.id,
+          id: data.id || docSnap.id,
           customerName: data.customerName || "",
           email: data.email || "",
           phone: data.phone || "",
@@ -73,10 +70,12 @@ export function subscribeToOrders(
           items: data.items || [],
           total: data.total || 0,
           status: data.status || "pending",
-          date: data.date || "",
+          date: data.date || data.createdAt || "",
           paymentMethod: data.paymentMethod || "",
         } as Order;
       });
+      // Sort by date descending (newest first)
+      orders.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       callback(orders);
     },
     (error) => {
