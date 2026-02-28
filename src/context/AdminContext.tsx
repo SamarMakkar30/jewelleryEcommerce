@@ -168,8 +168,11 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
 
   // ─── 2. Connect to Firestore if configured ─────────────────────────────
   useEffect(() => {
-    if (!isFirebaseConfigured()) {
-      console.log("Firebase not configured — using localStorage only");
+    const firebaseReady = isFirebaseConfigured();
+    console.log("[Lunara] Firebase configured:", firebaseReady, "| Project ID:", process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "NOT SET");
+    
+    if (!firebaseReady) {
+      console.log("[Lunara] Firebase not configured — using localStorage only");
       return;
     }
 
@@ -178,7 +181,10 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     // Subscribe to real-time orders from Firestore
     if (!isListeningToFirestore.current) {
       isListeningToFirestore.current = true;
+      console.log("[Lunara] Subscribing to Firestore orders...");
+      
       const unsubscribe = subscribeToOrders((orders) => {
+        console.log("[Lunara] Firestore orders received:", orders.length);
         dispatch({ type: "SET_ORDERS", payload: orders });
       });
 
