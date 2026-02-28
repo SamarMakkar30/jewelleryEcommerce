@@ -5,7 +5,7 @@ import { useCart } from "@/context/CartContext";
 import { useAdmin, useStoreData } from "@/context/AdminContext";
 import Image from "next/image";
 import Link from "next/link";
-import { ShieldCheck, Lock, MessageCircle } from "lucide-react";
+import { ShieldCheck, Lock, MessageCircle, CheckCircle, ShoppingBag, ArrowRight, Sparkles } from "lucide-react";
 
 export default function CheckoutPage() {
   const { state, totalPrice, clearCart } = useCart();
@@ -23,6 +23,8 @@ export default function CheckoutPage() {
   });
   const [pincodeLoading, setPincodeLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, boolean>>({});
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [placedOrderId, setPlacedOrderId] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -69,7 +71,7 @@ export default function CheckoutPage() {
     if (hasError) return;
 
     // Build WhatsApp message
-    const phoneDigits = (settings.phone || "917206889528").replace(/\D/g, "");
+    const WHATSAPP_NUMBER = "917206889528";
     const itemLines = state.items
       .map(
         (item) =>
@@ -115,10 +117,17 @@ ${itemLines}
       paymentMethod: "WhatsApp COD",
     });
 
+    // Store order ID for thank you page
+    setPlacedOrderId(orderId);
+
     // Clear cart after placing order
     clearCart();
 
-    window.open(`https://wa.me/${phoneDigits}?text=${encoded}`, "_blank");
+    // Open WhatsApp
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, "_blank");
+
+    // Show thank you page
+    setOrderPlaced(true);
   };
 
   const inputClass = (field: string) =>
@@ -143,6 +152,91 @@ ${itemLines}
         </div>
       </div>
 
+      {/* ─── Thank You Screen ─── */}
+      {orderPlaced ? (
+        <div className="luxury-container py-12 sm:py-20 pb-16 sm:pb-24">
+          <div className="max-w-lg mx-auto text-center">
+            {/* Success Icon */}
+            <div className="relative inline-flex items-center justify-center mb-6">
+              <div className="absolute inset-0 bg-green-100 rounded-full animate-ping opacity-30 w-20 h-20" />
+              <div className="relative w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                <CheckCircle size={40} className="text-white" strokeWidth={2} />
+              </div>
+            </div>
+
+            {/* Heading */}
+            <h1 className="font-serif text-2xl sm:text-3xl text-neutral-900 mb-2">
+              Thank You for Your Order!
+            </h1>
+            <p className="text-neutral-500 text-sm sm:text-base mb-6 max-w-md mx-auto">
+              Your order has been placed successfully. Please complete the order on WhatsApp to confirm.
+            </p>
+
+            {/* Order ID Card */}
+            <div className="bg-white border border-neutral-200 rounded-xl p-5 mb-6 shadow-soft-sm">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <Sparkles size={16} className="text-gold" />
+                <span className="text-xs uppercase tracking-widest text-gold font-semibold">Order Placed</span>
+                <Sparkles size={16} className="text-gold" />
+              </div>
+              <p className="text-neutral-400 text-xs uppercase tracking-wider mb-1">Order ID</p>
+              <p className="font-mono text-lg font-bold text-neutral-900">{placedOrderId}</p>
+              <p className="text-neutral-400 text-xs mt-2">
+                Save this ID to track your order
+              </p>
+            </div>
+
+            {/* What Happens Next */}
+            <div className="bg-white border border-neutral-200 rounded-xl p-5 mb-8 text-left shadow-soft-sm">
+              <h3 className="font-semibold text-neutral-800 text-sm mb-3">What happens next?</h3>
+              <div className="space-y-3">
+                <div className="flex gap-3 items-start">
+                  <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-green-600 text-xs font-bold">1</span>
+                  </div>
+                  <p className="text-neutral-600 text-sm">Complete the order message on WhatsApp</p>
+                </div>
+                <div className="flex gap-3 items-start">
+                  <div className="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-gold text-xs font-bold">2</span>
+                  </div>
+                  <p className="text-neutral-600 text-sm">We&apos;ll confirm your order and share payment details</p>
+                </div>
+                <div className="flex gap-3 items-start">
+                  <div className="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-gold text-xs font-bold">3</span>
+                  </div>
+                  <p className="text-neutral-600 text-sm">Your jewellery will be shipped with love & care ✨</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="/shop"
+                className="btn-gold inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm"
+              >
+                <ShoppingBag size={16} />
+                Continue Shopping
+                <ArrowRight size={14} />
+              </Link>
+              <Link
+                href="/track-order"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-neutral-300 text-neutral-700 text-sm font-medium hover:bg-neutral-50 transition-colors"
+              >
+                Track Your Order
+              </Link>
+            </div>
+
+            {/* Trust Note */}
+            <p className="text-neutral-400 text-xs mt-8 flex items-center justify-center gap-1">
+              <ShieldCheck size={12} /> Your information is safe with us
+            </p>
+          </div>
+        </div>
+      ) : (
+      /* ─── Checkout Form ─── */
       <div className="luxury-container py-6 sm:py-12 pb-8 sm:pb-16">
         <div className="grid lg:grid-cols-5 gap-8 sm:gap-10">
           {/* Form */}
@@ -333,6 +427,7 @@ ${itemLines}
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 }
